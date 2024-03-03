@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/navigation.css">
+</head>
+<script src="../static/js/navigation.js" defer></script>
+<body>
+    <div class="navigation">
+        <div class="topnav" id="Topnav">
+            <a href="#" class="active">DarkWeb Email Leak Check</a>
+            <a href="index.html">Home</a>
+            <a href="passwordleak.html">DarkWeb Password Leak Check</a>
+            <a href="#">Hash Identifier</a>
+            <a href="#">Secure Massage</a>
+            <a href="#">Help & FAQ</a>
+            <a href="javascript:void(0);" class="icon" onclick="responsive()">Tools</a>
+        </div>
+    </div>
+    <div>
+        <div class="form">
+            <form method="POST" action="{{ url_for('emailBreachChecker') }}">
+                <input type="email" id="email" name="email" placeholder="user@example.com" required>
+                <br>
+                <button type="submit">Scan</button>
+            </form>           
+        </div>
+        <div class="jsonData">
+            <p>{{ jsonData }}</p>
+        </div>        
+    </div>
+</body>
+</html>
