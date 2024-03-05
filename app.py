@@ -3,7 +3,18 @@ from emailBreach import emailBreach
 import json
 
 app = Flask(__name__)
-
+@app.route('/')
+def home():
+    return render_template('index.html')
+@app.route('/passwordleak')
+def passwordleak():
+    return render_template('passwordleak.html')
+@app.route('/emailleak')
+def emailleak():
+    return render_template('emailleak.html')
+@app.route('/index')
+def index_home():
+    return render_template('index.html')
 @app.route("/api/email-breach", methods=['GET', 'POST'])
 def emailBreachChecker():
     if request.method == 'POST':
