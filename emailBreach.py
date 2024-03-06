@@ -1,23 +1,41 @@
 import requests
-import json
+
 class emailBreach:
-	def __init__(self):
-		pass
-	def isBreached(self,email):
-		self.url = "https://data-breach-checker.p.rapidapi.com/api/breach"
+    def __init__(self):
+        self.url = "https://data-breach-checker.p.rapidapi.com/api/breach"
+        self.headers = {
+            "X-RapidAPI-Key": "26b9999e81msheeb3e281682706ap1a66e6jsn83d5bb95ed4b",
+            "X-RapidAPI-Host": "data-breach-checker.p.rapidapi.com"
+        }
 
-		self.querystring = {"email":email}
+    def isBreached(self, email):
+        querystring = {"email": email}
+        response = requests.get(self.url, headers=self.headers, params=querystring)
+        return response.json()
 
-		self.headers = {
-			"X-RapidAPI-Key": "26b9999e81msheeb3e281682706ap1a66e6jsn83d5bb95ed4b",
-			"X-RapidAPI-Host": "data-breach-checker.p.rapidapi.com"
-		}
+    def getBreachInfo(self, email):
+        data = self.isBreached(email)
+        all_entries = []
 
-		self.response = requests.get(self.url, headers=self.headers, params=self.querystring)
+        for entry in data.get("data", []):
+            entry_info = {
+                "BreachDate": entry.get("BreachDate", ""),
+                "Name": entry.get("Name", ""),
+                "Domain": entry.get("Domain", ""),
+                "Description": entry.get("Description", ""),
+                "LogoPath": entry.get("LogoPath", ""),
+                "DataClasses": entry.get("DataClasses", [])
+            }
 
-		return (self.response.json())
+            all_entries.append(entry_info)
 
-# ob = emailBreach()
-# s = ob.isBreached("test@gmail.com")
-# with open("big-resp.json","w") as f:
-# 	json.dump(s, f, indent=4)
+        json_data = {
+            "message": data.get("message", ""),
+            "data": all_entries
+        }
+
+        return json_data
+
+if __name__ == '__main__':
+    result = emailBreach().getBreachInfo("test@gmail.com")
+    print(result)
