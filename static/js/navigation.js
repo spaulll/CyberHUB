@@ -1,3 +1,12 @@
+function active() {
+    pathname = window.location.pathname;
+    pathname = pathname.replace("/","")
+    var a = document.getElementById(pathname)
+    if (a.className === "menuitems") {
+        a.className += " active";
+    }
+}
+active();
 function responsive() {
     var x = document.getElementById("Topnav");
     if (x.className === "topnav") {

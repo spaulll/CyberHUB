@@ -1,0 +1,23 @@
+{%extends 'layer.html' %}
+{% block body%}
+<div>
+        <div class="form">
+            <form method="POST" action="{{ url_for('securemessage') }}">
+                <input type="radio" id="encrypt" name="method" value="encrypt">
+                <label for="encrypt">Encrypt Your Message</label>
+                <br><p>OR</p><br>
+                <input type="radio" id="decrypt" name="method" value="decrypt">
+                <label for="decrypt">Decrypt Your Message</label>
+                <br>
+                <input type="text" id="plain" name="plain" placeholder="Your message goes here" required>
+                <br>
+                <button type="submit">Process</button>
+            </form>           
+        </div>
+        <div class="jsonData">
+            <p>{{ jsonData }}</p>
+        </div>        
+    </div>
+</body>
+</html>
+{% endblock %}
