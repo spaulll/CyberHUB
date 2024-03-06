@@ -9,7 +9,6 @@ def home():
 @app.route('/index')
 def index_home():
     return render_template('index.html')
-
 @app.route('/emailleak')
 def emailleak():
     return render_template('emailleak.html')
