@@ -6,15 +6,24 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return render_template('index.html')
-@app.route('/passwordleak')
-def passwordleak():
-    return render_template('passwordleak.html')
-@app.route('/emailleak')
-def emailleak():
-    return render_template('emailleak.html')
 @app.route('/index')
 def index_home():
     return render_template('index.html')
+@app.route('/emailleak')
+def emailleak():
+    return render_template('emailleak.html')
+@app.route('/passwordleak')
+def passwordleak():
+    return render_template('passwordleak.html')
+@app.route('/hashid')
+def hashid():
+    return render_template('hashid.html')
+@app.route('/securemessage')
+def securemessage():
+    return render_template('securemessage.html')
+@app.route('/help')
+def help():
+    return render_template('help.html')
 @app.route("/api/email-breach", methods=['GET', 'POST'])
 def emailBreachChecker():
     if request.method == 'POST':
