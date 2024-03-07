@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, render_template, request
+from flask_cors import CORS
 # Custom modules
 from emailBreach import emailBreach
 from passBreach import passBreach
 
 
 app = Flask(__name__)
+CORS(app)
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -43,10 +45,10 @@ def emailBreachChecker():
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
 
-        return render_template('emailleak.html', jsonData = jsonify(Data).json)
+        return (jsonify(Data).json)
     
     # If it's a GET request or any other method, render the form template
-    return render_template('emailleak.html', jsonData=None)
+    return jsonify({"error": "Method not allowed"}).json, 405
 
 
 @app.route("/api/password-breach", methods=['GET', 'POST'])
