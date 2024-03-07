@@ -1,4 +1,5 @@
 import requests
+from json import dump
 
 class emailBreach:
     def __init__(self):
@@ -38,4 +39,7 @@ class emailBreach:
 
 if __name__ == '__main__':
     result = emailBreach().getBreachInfo("test@gmail.com")
+    ## For saving data in a json file
+    # with open("big-resp.json","w") as f:
+    #     dump(result,f)
     print(result)
