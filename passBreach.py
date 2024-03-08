@@ -19,17 +19,17 @@ class passBreach:
         if(pwnedlist):
             for tail, count in pwnedlist:
                 if tail == suffix:
-                    return {
+                    return {                                    # if found
                         "status" : "success",
                         "isbreached" : "True",
                         "times" : count
                     }
-            return {
+            return {                                            # if not found
                 "status" : "success",
                 "isbreached" : "False",
                 "times" : None
             }
-        return {
+        return {                                                # something is wrong
             "status" : "failed",
             "isbreached" : None,
             "times" : None
