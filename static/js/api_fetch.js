@@ -1,9 +1,11 @@
 const url = "http://127.0.0.1:5000/api/email-breach";
 
 const jsonDataShow = document.querySelector("#jsonData");
-const btn = document.querySelector("#submit"); // Corrected ID to match the button ID in HTML
+const btn = document.querySelector("#submit");
 
-const getFacts = async () => { // Corrected function name to match the one used in addEventListener
+const getFacts = async (event) => {
+    event.preventDefault(); // Prevents default form submission behavior
+    
     const emailInput = document.querySelector("#email").value;
     const data = { "email": emailInput };
     try {
@@ -24,4 +26,4 @@ const getFacts = async () => { // Corrected function name to match the one used 
     }
 };
 
-btn.addEventListener("click", getFacts); // Corrected function name to match the one defined above
+btn.addEventListener("click", getFacts);

@@ -38,20 +38,26 @@ def help():
 @app.route("/api/email-breach", methods=['GET', 'POST'])
 def emailBreachChecker():
     if request.method == 'POST':
-        #email = request.form.get('email')
-        #email="supriyopurkait58@gmail.com"
-        data = request.json  # Parse JSON data from request body
-        email = data.get('email')# Extract 'email' field from JSON data
+        data = request.json
+        email = data.get('email')
         print(f"Received email from the form: {email}")
         
-        Data = emailBreach().getBreachInfo(email)           #type: dict
+        # Assuming emailBreach().getBreachInfo(email) is returning some data
+        # Replace it with your actual logic
+        Data = {"BreachDate": "2022-12-13",
+                "DataClasses": ["Email addresses", "Partial phone numbers"],
+                "Domain": "gemini.com",
+                "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
+                "Name": "Gemini"}
 
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
+        print(f"execution done ")
+
         return jsonify(Data), 200
     
     # If it's a GET request or any other method, render the form template
-    return jsonify({"error": "Method not allowed"}).json, 405
+    return jsonify({"error": "Method not allowed"}), 405
 
 
 @app.route("/api/password-breach", methods=['GET', 'POST'])
