@@ -1,27 +1,27 @@
+const url = "http://127.0.0.1:5000/api/email-breach";
 
-// Example POST method implementation:
-async function postData(url = "", data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      redirect: "follow", // manual, *follow, error
-      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
-}
+const jsonDataShow = document.querySelector("#jsonData");
+const btn = document.querySelector("#submit"); // Corrected ID to match the button ID in HTML
 
-function email_leak() {
-    var d = document.forms["form"]["email"].value;
-    console.log(d);
-    data = postData("localhost:5000/api/email-breach", d);
-    console.log(data);
-    document.getElementById("jsonData").innerHTML = data;
-}
+const getFacts = async () => { // Corrected function name to match the one used in addEventListener
+    const emailInput = document.querySelector("#email").value;
+    const data = { "email": emailInput };
+    try {
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        console.log(response.status);
+        let responseData = await response.json();
+        console.log(responseData);
+        // Update DOM with response data
+        jsonDataShow.innerText = JSON.stringify(responseData);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+btn.addEventListener("click", getFacts); // Corrected function name to match the one defined above
