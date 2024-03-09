@@ -1,4 +1,4 @@
-const url = "http://127.0.0.1:5000/api/email-breach";
+const url = "http://127.0.0.1:5000/api/password-breach";
 
 const jsonDataShow = document.querySelector("#jsonData");
 const btn = document.querySelector("#submit");
@@ -22,7 +22,7 @@ const getFacts = async (event) => {
         // Update DOM with response data
         jsonDataShow.innerText = JSON.stringify(responseData);
         //btn.disabled = true; // Disable the submit button
-        document.querySelector("#password").disabled = true;
+        // document.querySelector("#password").disabled = true;
     } catch (error) {
         console.error('Error:', error);
     }
