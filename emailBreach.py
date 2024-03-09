@@ -5,7 +5,7 @@ class emailBreach:
     def __init__(self):
         self.url = "https://data-breach-checker.p.rapidapi.com/api/breach"
         self.headers = {
-            "X-RapidAPI-Key": "9cdaa7cc02msh939e92d8a2ade38p1b7906jsne14a022f1b24",
+            "X-RapidAPI-Key": "26b9999e81msheeb3e281682706ap1a66e6jsn83d5bb95ed4b",
             "X-RapidAPI-Host": "data-breach-checker.p.rapidapi.com"
         }
 
@@ -34,12 +34,10 @@ class emailBreach:
 
             all_entries.append(entry_info)
 
-        json_data = {
-            "message": data.get("message", ""),
-            "data": all_entries
-        }
-
-        return json_data
+        if (all_entries):
+            return {"message": data.get("message", ""), "data": all_entries}
+        return {"message": data.get("message", ""), "data": "Not found in any breach record"}
+        
 
 if __name__ == '__main__':
     result = emailBreach().getBreachInfo("test@gmail.com")
