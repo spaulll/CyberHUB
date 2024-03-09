@@ -63,8 +63,9 @@ def emailBreachChecker():
 @app.route("/api/password-breach", methods=['GET', 'POST'])
 def passwordBreachChecker():
     if request.method == 'POST':
-        password = request.form.get('password')
-        
+        #password = request.form.get('password')
+        data = request.json
+        password = data.get('password')
 ### As of now password is in plaintext, but is has to be only 5 letters of SHA1
 ### hashed plaintext password.
         
@@ -73,11 +74,13 @@ def passwordBreachChecker():
         
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
-
-        return render_template('passwordleak.html', jsonData=jsonify(Data).json)
+        jsonData=jsonify(Data).json
+        return jsonData,200
 
     # If it's a GET request or any other method, render the form template
-    return render_template('passwordleak.html', jsonData=None)
+    #return render_template('passwordleak.html', jsonData=None)
+    return jsonify({"error": "Method not allowed"}), 405
+
 
 if __name__ == '__main__':
     app.run(debug=True)
