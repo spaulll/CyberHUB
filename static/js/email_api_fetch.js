@@ -22,7 +22,7 @@ const getFacts = async (event) => {
         // Update DOM with response data
         jsonDataShow.innerText = JSON.stringify(responseData);
         //btn.disabled = true; // Disable the submit button
-        document.querySelector("#email").disabled = true;
+        // document.querySelector("#email").disabled = true;
     } catch (error) {
         console.error('Error:', error);
     }
