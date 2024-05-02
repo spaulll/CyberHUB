@@ -3,7 +3,10 @@ from flask_cors import CORS
 # Custom modules
 from emailBreach import emailBreach
 from passBreach import passBreach
+from hashIdentifier import hashIdentifier
 
+import sys
+print(sys.version) # required by subhasish
 
 app = Flask(__name__)
 CORS(app)
@@ -34,6 +37,8 @@ def securemessage():
 @app.route('/help')
 def help():
     return render_template('help.html')
+
+### API ####
 
 @app.route("/api/email-breach", methods=['GET', 'POST'])
 def emailBreachChecker():
@@ -71,6 +76,28 @@ def passwordBreachChecker():
         
         print(f"Received email from the form: {password}")
         Data = passBreach().isPassBreached(password)        
+        
+        # Log the data in console
+        app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
+        jsonData=jsonify(Data).json
+        return jsonData,200
+
+    # If it's a GET request or any other method, render the form template
+    #return render_template('passwordleak.html', jsonData=None)
+    return jsonify({"error": "Method not allowed"}), 405
+
+
+@app.route("/api/hash-id", methods=['GET', 'POST'])
+def HashIdentifier():
+    if request.method == 'POST':
+        #hash = request.form.get('hash')
+        data = request.json
+        hash = data.get('hash')
+### As of now hash is in plaintext, but is has to be only 5 letters of SHA1
+### hashed plaintext hash.
+        
+        print(f"Received email from the form: {hash}")
+        Data = hashIdentifier().getData(hash)
         
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")

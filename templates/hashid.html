@@ -1,17 +1,18 @@
 {%extends 'navigation.html' %}
 {% block body%}
 <div>
-        <div class="form">
-            <form method="POST" action="{{ url_for('hashid') }}">
-                <input type="text" class="field" id="hash" name="hash" placeholder="Enter hash here c97a87ab8553671a18c294d47" required>
-                <br>
-                <button type="submit">Identify</button>
-            </form>           
-        </div>
-        <div class="jsonData">
-            <p>{{ jsonData }}</p>
-        </div>        
+    <div class="form">
+        <form method="POST" action="{{ url_for('hashid') }}">
+            <input type="text" class="field" id="hash" name="hash" placeholder="Enter hash here c97a87ab8553671a18c294d47" required>
+            <br>
+            <button id="submit" type="submit">Identify</button>
+        </form>           
     </div>
+    <div class="jsonData">
+        <div id="jsonData"></div>
+    </div>        
+</div>
+<script src="{{url_for('static',filename='js/hash_api_fetch.js')}}"></script>
 </body>
 </html>
 {% endblock %}
