@@ -1,31 +1,48 @@
-const url = "http://127.0.0.1:5000/api/password-breach";
+function dataFormater (response) {
+    let data = "";
+    if(response.isbreached == "True")
+    {
+        data += "<p> " + "The Password has been breached " + response.times + " times" + "</p>";
+    }
+    if(response.isbreached == "False")
+    {
+        data += "<p> " + "The Password hasn't been breached " + "</p>";
+    }
+    return data;
+}
 
-const jsonDataShow = document.querySelector("#jsonData");
-const btn = document.querySelector("#submit");
+const apiUrl = "http://127.0.0.1:5000/api/password-breach";
 
-const getFacts = async (event) => {
+const jsonDataDisplay = document.querySelector("#jsonData");
+const submitBtn = document.querySelector("#submit");
+
+const fetchData = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
-    
-    const passInput = document.querySelector("#password").value;
-    const data = { "password": passInput };
     try {
-        let response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        console.log(response.status);
-        let responseData = await response.json();
-        console.log(responseData);
-        // Update DOM with response data
-        jsonDataShow.innerHTML = JSON.stringify(responseData);
-        //btn.disabled = true; // Disable the submit button
-        // document.querySelector("#password").disabled = true;
+        const passInput = await document.querySelector("#password").value;
+        if(passInput !== "")
+            {
+                const data = { "password": passInput };
+                let response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                console.log(response.status);
+                let responseData = await response.json();
+                console.log(responseData);
+                console.log(typeof(responseData.isbreached));
+                // Update DOM with response data
+                jsonDataDisplay.innerHTML = dataFormater(responseData);
+                // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
+                //submitBtn.disabled = true; // Disable the submit button
+                // document.querySelector("#password").disabled = true;
+            }
     } catch (error) {
         console.error('Error:', error);
     }
 };
 
-btn.addEventListener("click", getFacts);
+submitBtn.addEventListener("click", fetchData);

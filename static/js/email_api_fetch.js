@@ -19,28 +19,27 @@ const fetchData = async (event) => {
     try {
         const emailInput = await document.querySelector("#email").value;
         if(emailInput !== "" && emailInput.search("@") !== -1) 
-        {
-            const data = { "email": emailInput };
-            let response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-                });
-            console.log(response.status);
-            let responseData = await response.json();
-            console.log(responseData);
-            // Update DOM with response data
-            jsonDataDisplay.innerHTML = dataFormater(responseData);
-            // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
-            //submitBtn.disabled = true; // Disable the submit button
-            // document.querySelector("#email").disabled = true;
-        }
+            {
+                const data = { "email": emailInput };
+                let response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                    });
+                console.log(response.status);
+                let responseData = await response.json();
+                console.log(responseData);
+                // Update DOM with response data
+                jsonDataDisplay.innerHTML = dataFormater(responseData);
+                // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
+                //submitBtn.disabled = true; // Disable the submit button
+                // document.querySelector("#email").disabled = true;
+            }
     } catch (error) {
         console.error('Error:', error);
     }
 };
 
 submitBtn.addEventListener("click", fetchData);
-

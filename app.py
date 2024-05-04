@@ -75,8 +75,8 @@ def passwordBreachChecker():
 ### hashed plaintext password.
         
         print(f"Received email from the form: {password}")
-        Data={"massage":"form backend you are successfully getting data view in line no 78"}
-        # Data = PassBreach().isPassBreached(password)        
+        #Data={"massage":"form backend you are successfully getting data view in line no 78"}
+        Data = PassBreach().isPassBreached(password)        
         
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
