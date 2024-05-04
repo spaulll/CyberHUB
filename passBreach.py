@@ -1,7 +1,7 @@
 import requests
 import hashlib
 
-class passBreach:
+class PassBreach:
     def getData(self, prefix):
         try:
             url = f'https://api.pwnedpasswords.com/range/{prefix}'
@@ -37,4 +37,4 @@ class passBreach:
 
 
 if __name__ == '__main__':
-    print(passBreach().isPassBreached('password'))
+    print(PassBreach().isPassBreached('password'))

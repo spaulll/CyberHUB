@@ -20,7 +20,7 @@ const getFacts = async (event) => {
         let responseData = await response.json();
         console.log(responseData);
         // Update DOM with response data
-        jsonDataShow.innerText = JSON.stringify(responseData);
+        jsonDataShow.innerHTML = JSON.stringify(responseData);
         //btn.disabled = true; // Disable the submit button
         // document.querySelector("#password").disabled = true;
     } catch (error) {

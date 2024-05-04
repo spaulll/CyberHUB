@@ -1,7 +1,7 @@
 import requests
 from json import dump
 
-class emailBreach:
+class EmailBreach:
     def __init__(self):
         self.url = "https://data-breach-checker.p.rapidapi.com/api/breach"
         self.headers = {
@@ -18,7 +18,7 @@ class emailBreach:
             return None
     def getBreachInfo(self, email):
         data = self.isBreached(email)
-        if data == None:
+        if data is None:
             return {"message": "Something went wrong!"}
         
         all_entries = {}
@@ -40,7 +40,7 @@ class emailBreach:
         
 
 if __name__ == '__main__':
-    result = emailBreach().getBreachInfo("test@gmail.com")
+    result = EmailBreach().getBreachInfo("test@gmail.com")
     ## For saving data in a json file
     # with open("big-resp.json","w") as f:
     #     dump(result,f)

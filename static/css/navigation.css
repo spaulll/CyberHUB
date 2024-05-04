@@ -76,7 +76,7 @@ body{
 }
 .form input {
     width: max-content;
-    min-width: 30rem;
+    /* min-width: 20rem; */
     height: 4rem;
     border-radius: 1rem;
     box-shadow: 0.3rem 0.3rem 0.6rem rgb(209, 209, 209), -0.2rem -0.2rem 0.5rem rgb(255, 255, 255);

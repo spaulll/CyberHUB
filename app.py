@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 # Custom modules
-from emailBreach import emailBreach
-from passBreach import passBreach
-from hashIdentifier import hashIdentifier
+from EmailBreach import EmailBreach 
+from PassBreach import PassBreach 
+from HashIdentifier import HashIdentifier
 
 import sys
 print(sys.version) # required by subhasish
@@ -50,14 +50,14 @@ def emailBreachChecker():
         # Assuming emailBreach().getBreachInfo(email) is returning some data
         # Replace it with your actual logic
         Data = {"BreachDate": "2022-12-13",
-               "DataClasses": ["Email addresses", "Partial phone numbers"],
-               "Domain": "gemini.com",
-               "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
-              "Name": "Gemini"}
-        # Data=emailBreach().getBreachInfo(email)
+                "DataClasses": ["Email addresses", "Partial phone numbers"],
+                "Domain": "gemini.com",
+                "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
+                "Name": "Gemini"}
+        # Data=EmailBreach().getBreachInfo(email)
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
-        print(f"execution done ")
+        print("execution done ")
 
         return jsonify(Data), 200
     
@@ -76,7 +76,7 @@ def passwordBreachChecker():
         
         print(f"Received email from the form: {password}")
         Data={"massage":"form backend you are successfully getting data view in line no 78"}
-        # Data = passBreach().isPassBreached(password)        
+        # Data = PassBreach().isPassBreached(password)        
         
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
@@ -89,7 +89,7 @@ def passwordBreachChecker():
 
 
 @app.route("/api/hash-id", methods=['GET', 'POST'])
-def HashIdentifier():
+def hashIdentifier():
     if request.method == 'POST':
         #hash = request.form.get('hash')
         data = request.json
@@ -98,7 +98,7 @@ def HashIdentifier():
 ### hashed plaintext hash.
         
         print(f"Received email from the form: {hash}")
-        Data = hashIdentifier().getData(hash)
+        Data = HashIdentifier().getData(hash)
         
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
@@ -117,7 +117,7 @@ def massageEncode():
         cipherText = data.get('encodedMassage') # It retrives the encoded massage out of data
         
         print(f"Received email from the form: {cipherText}")
-     
+        
         Data = {"massage": "data received " }
         # Log the data in console
         jsonData=jsonify(Data).json
