@@ -108,6 +108,25 @@ def HashIdentifier():
     #return render_template('passwordleak.html', jsonData=None)
     return jsonify({"error": "Method not allowed"}), 405
 
+@app.route("/api/massageEncode", methods=['GET', 'POST'])
+def massageEncode():
+    if request.method == 'POST':
+        #password = request.form.get('password')
+        data = request.json # retrive the jason data which is send from frontend
+        cipherText = data.get('encodedMassage') # It retrives the encoded massage out of data
+        
+        print(f"Received email from the form: {cipherText}")
+     
+        Data = {"massage": "data received " }
+        # Log the data in console
+        jsonData=jsonify(Data).json
+        return jsonData,200
+
+    # If it's a GET request or any other method, render the form template
+    #return render_template('passwordleak.html', jsonData=None)
+    return jsonify({"error": "Something went wrong"}), 405
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
