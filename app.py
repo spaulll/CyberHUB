@@ -49,12 +49,12 @@ def emailBreachChecker():
         
         # Assuming emailBreach().getBreachInfo(email) is returning some data
         # Replace it with your actual logic
-        #Data = {"BreachDate": "2022-12-13",
-        #        "DataClasses": ["Email addresses", "Partial phone numbers"],
-        #        "Domain": "gemini.com",
-        #        "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
-        #       "Name": "Gemini"}
-        Data=emailBreach().getBreachInfo(email)
+        Data = {"BreachDate": "2022-12-13",
+               "DataClasses": ["Email addresses", "Partial phone numbers"],
+               "Domain": "gemini.com",
+               "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
+              "Name": "Gemini"}
+        # Data=emailBreach().getBreachInfo(email)
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
         print(f"execution done ")
@@ -75,7 +75,8 @@ def passwordBreachChecker():
 ### hashed plaintext password.
         
         print(f"Received email from the form: {password}")
-        Data = passBreach().isPassBreached(password)        
+        Data={"massage":"form backend you are successfully getting data view in line no 78"}
+        # Data = passBreach().isPassBreached(password)        
         
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
