@@ -1,15 +1,15 @@
-const url = "http://127.0.0.1:5000/api/email-breach";
+const apiUrl = "http://127.0.0.1:5000/api/email-breach";
 
-const jsonDataShow = document.querySelector("#jsonData");
-const btn = document.querySelector("#submit");
+const jsonDataDisplay = document.querySelector("#jsonData");
+const submitBtn = document.querySelector("#submit");
 
-const getFacts = async (event) => {
+const fetchData = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
-    
-    const emailInput = document.querySelector("#email").value;
-    const data = { "email": emailInput };
     try {
-        let response = await fetch(url, {
+        const emailInput = await document.querySelector("#email").value;
+        const data = { "email": emailInput };
+
+        let response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,12 +20,12 @@ const getFacts = async (event) => {
         let responseData = await response.json();
         console.log(responseData);
         // Update DOM with response data
-        jsonDataShow.innerText = JSON.stringify(responseData);
-        //btn.disabled = true; // Disable the submit button
+        jsonDataDisplay.innerText = JSON.stringify(responseData);
+        //submitBtn.disabled = true; // Disable the submit button
         // document.querySelector("#email").disabled = true;
     } catch (error) {
         console.error('Error:', error);
     }
 };
 
-btn.addEventListener("click", getFacts);
+submitBtn.addEventListener("click", fetchData);
