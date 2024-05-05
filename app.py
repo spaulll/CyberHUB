@@ -4,7 +4,6 @@ from flask_cors import CORS
 from email_breach import EmailBreach   # noqa: F401
 from pass_breach import PassBreach 
 from hash_identifier import HashIdentifier
-from base64_decoder import Decoder
 
 import sys
 print(sys.version) # required by subhasish
