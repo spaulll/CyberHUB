@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 # Custom modules
-from EmailBreach import EmailBreach 
-from PassBreach import PassBreach 
-from HashIdentifier import HashIdentifier
-from Base64Decoder import Decoder
+from emailBreach import EmailBreach 
+from passBreach import PassBreach 
+from hashIdentifier import HashIdentifier
 
 import sys
 print(sys.version) # required by subhasish
@@ -118,11 +117,8 @@ def massageEncode():
         cipherText = data.get('encodedMassage') # It retrives the encoded massage out of data
         
         print(f"Received email from the form: {cipherText}")
-
-        decoded_message = Decoder().decode_message(cipherText)
-        print("Decoded message:", decoded_message)
-        
-        Data = {"massage": "data received " }
+        # data return from here as jason format by default i'm returning a base64 encoded value
+        Data = {"massage": "aGk=" }
         # Log the data in console
         jsonData=jsonify(Data).json
         return jsonData,200

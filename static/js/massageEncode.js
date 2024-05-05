@@ -7,7 +7,7 @@ const fetchDataEN = async (event) => {
         let message = document.getElementById("massageInput").value;
         let cipherText = btoa(message);
         console.log(cipherText);
-        // let plainText = atob(cipherText);
+        // let plainText = ;
         // console.log(plainText);
 
         const data = { "encodedMassage": cipherText };
@@ -18,10 +18,14 @@ const fetchDataEN = async (event) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+
         });
         console.log(response.status);
         let responseData = await response.json();
         console.log(responseData);
+        returnTxtHold = responseData["massage"]
+        decodeResult = atob(returnTxtHold)
+        console.log(decodeResult);
         // Update DOM with response data
         //jsonDataDisplay.innerText = JSON.stringify(responseData);
     } catch (error) {
@@ -63,7 +67,7 @@ let wait = document.addEventListener("DOMContentLoaded", function () {
             if (encryptRadio.checked) {
                 // Call encrypt function
                 await fetchDataEncrypt();
-                
+
             } else if (decryptRadio.checked) {
                 // Call decrypt function
                 await fetchDataDecrypt();
