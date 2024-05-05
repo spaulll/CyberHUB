@@ -1,0 +1,34 @@
+{
+    "data": [
+      {
+        "AddedDate": "2021-04-26T04:00:10Z",
+        "BreachDate": "2020-10-14",
+        "DataClasses": [
+          "Dates of birth",
+          "Email addresses",
+          "IP addresses",
+          "Names",
+          "Passwords",
+          "Phone numbers",
+          "Physical addresses"
+        ],
+        "Description": "In October 2020, the Indian grocery platform bigbasket suffered a data breach that exposed over 20 million customer records. The data was originally sold before being leaked publicly in April the following year and included email, IP and physical addresses, names, phones numbers, dates of birth passwords stored as Django(SHA-1) hashes.",
+        "Domain": "bigbasket.com",
+        "IsFabricated": false,
+        "IsMalware": false,
+        "IsRetired": false,
+        "IsSensitive": false,
+        "IsSpamList": false,
+        "IsSubscriptionFree": false,
+        "IsVerified": true,
+        "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/bigbasket.png",
+        "ModifiedDate": "2021-04-26T06:15:01Z",
+        "Name": "bigbasket",
+        "PwnCount": 24500011,
+        "Title": "bigbasket"
+      }
+    ],
+    "message": "Success.",
+    "status": true
+  }
+  
