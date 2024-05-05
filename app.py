@@ -4,6 +4,7 @@ from flask_cors import CORS
 from EmailBreach import EmailBreach 
 from PassBreach import PassBreach 
 from HashIdentifier import HashIdentifier
+from Base64Decoder import Decoder
 
 import sys
 print(sys.version) # required by subhasish
@@ -117,6 +118,9 @@ def massageEncode():
         cipherText = data.get('encodedMassage') # It retrives the encoded massage out of data
         
         print(f"Received email from the form: {cipherText}")
+
+        decoded_message = Decoder().decode_message(cipherText)
+        print("Decoded message:", decoded_message)
         
         Data = {"massage": "data received " }
         # Log the data in console
