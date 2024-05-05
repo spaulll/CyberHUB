@@ -1,10 +1,10 @@
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 # Custom modules
-from EmailBreach import EmailBreach 
-from PassBreach import PassBreach 
-from HashIdentifier import HashIdentifier
-from Base64Decoder import Decoder
+from email_breach import EmailBreach   # noqa: F401
+from pass_breach import PassBreach 
+from hash_identifier import HashIdentifier
+from base64_decoder import Decoder
 
 import sys
 print(sys.version) # required by subhasish
