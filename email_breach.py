@@ -21,7 +21,7 @@ class EmailBreach:
         if data is None:
             return {"message": "Something went wrong!"}
         
-        all_entries = {}
+        all_entries = []
         for entry in data.get("data", []):
             entry_info = {
                 "BreachDate": entry.get("BreachDate", ""),
