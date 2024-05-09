@@ -9,6 +9,11 @@ function dataFormater (response) {
     return data;
 }
 
+function dataFormater(responseData) {
+    let formattedData = responseData.status + ': ';
+    formattedData += responseData.types.join(', ');
+    return formattedData;
+}
 const apiUrl = "http://127.0.0.1:5000/api/hash-id";
 
 const jsonDataDisplay = document.querySelector("#jsonData");
@@ -32,7 +37,7 @@ const fetchData = async (event) => {
                 let responseData = await response.json();
                 console.log(responseData);
                 // Update DOM with response data
-                jsonDataDisplay.innerHTML = dataFormater(responseData);
+                jsonDataDisplay.innerText = dataFormater(responseData);
                 // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
                 //submitBtn.disabled = true; // Disable the submit button
                 // document.querySelector("#password").disabled = true;
