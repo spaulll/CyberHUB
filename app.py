@@ -97,7 +97,7 @@ def hashIdentifier():
 ### As of now hash is in plaintext, but is has to be only 5 letters of SHA1
 ### hashed plaintext hash.
         
-        print(f"Received email from the form: {hash}")
+        print(f"Received hash from the form: {hash}")
         Data = HashIdentifier().getData(hash)
         
         # Log the data in console
