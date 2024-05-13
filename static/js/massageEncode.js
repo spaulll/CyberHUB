@@ -53,7 +53,7 @@ const fetchDataDN = async (event) => {
         let responseData = await response.json();
         console.log(responseData);
 
-        const messagep = String(atob(responseData.message));
+        const messagep = String ( atob (responseData.message) );
         DataDisplay.innerHTML = messagep;
     } catch (error) {
         console.error('Error:', error);
