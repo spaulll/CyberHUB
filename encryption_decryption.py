@@ -198,8 +198,8 @@ if __name__ == '__main__':
     rsa = RSAEncryption()
 
     while True:
-        choice = input("Enter 'encrypt' or 'decrypt' to perform the respective operation: ").strip().lower()
-        if choice == 'encrypt':
+        user_choice = input("Enter 'encrypt' or 'decrypt' to perform the respective operation: ").strip().lower()
+        if user_choice == 'encrypt':
             message = input("Enter the message: ")
 
             # Generate new keys and random string for each encryption
@@ -213,7 +213,7 @@ if __name__ == '__main__':
 
             print(cipher)
             print("Random string:", random_string)
-        elif choice == 'decrypt':
+        elif user_choice == 'decrypt':
             random_string = input("Enter the random string: ")
  
             # Decrypt message using RSA and Rail Fence Cipher
@@ -222,3 +222,4 @@ if __name__ == '__main__':
                 print(decrypted_message)
         else:
             print("Invalid choice. Please enter 'encrypt' or 'decrypt'.")
+
