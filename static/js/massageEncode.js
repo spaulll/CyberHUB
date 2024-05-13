@@ -1,5 +1,8 @@
 const submitBtn = document.querySelector("button[type='submit']");
-const apiUrl = "http://127.0.0.1:5000/api/massageEncode";
+const apiUrlen = "http://127.0.0.1:5000/api/massageEncode/encrypt";
+const apiUrlden = "http://127.0.0.1:5000/api/massageEncode/decrypt";
+
+let DataDisplay = document.getElementById("jsonDataDisplay");
 
 const fetchDataEN = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
@@ -7,12 +10,10 @@ const fetchDataEN = async (event) => {
         let message = document.getElementById("massageInput").value;
         let cipherText = btoa(message);
         console.log(cipherText);
-        // let plainText = ;
-        // console.log(plainText);
 
         const data = { "encodedMassage": cipherText };
 
-        let response = await fetch(apiUrl, {
+        let response = await fetch(apiUrlen, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,11 +24,37 @@ const fetchDataEN = async (event) => {
         console.log(response.status);
         let responseData = await response.json();
         console.log(responseData);
-        returnTxtHold = responseData["massage"]
-        decodeResult = atob(returnTxtHold)
-        console.log(decodeResult);
-        // Update DOM with response data
-        //jsonDataDisplay.innerText = JSON.stringify(responseData);
+
+        const messagep = String(responseData.message);
+        DataDisplay.innerHTML = messagep;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+const fetchDataDN = async (event) => {
+    event.preventDefault(); // Prevents default form submission behavior
+    try {
+        let message = document.getElementById("massageInput").value;
+        let cipherText = btoa(message);
+        console.log(cipherText);
+
+        const data = { "encodedMassage": cipherText };
+
+        let response = await fetch(apiUrlden, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+
+        });
+        console.log(response.status);
+        let responseData = await response.json();
+        console.log(responseData);
+
+        const messagep = String(atob(responseData.message));
+        DataDisplay.innerHTML = messagep;
     } catch (error) {
         console.error('Error:', error);
     }
@@ -38,14 +65,14 @@ function fetchDataEncrypt() {
 }
 
 function fetchDataDecrypt() {
-
+    // Implement your decrypt functionality here if needed
+    submitBtn.addEventListener("click", fetchDataDN);
 }
 
-let wait = document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     try {
         const encryptRadio = document.getElementById("encrypt");
         const decryptRadio = document.getElementById("decrypt");
-        const submitBtn = document.querySelector("button[type='submit']");
 
         // Event listener for radio buttons
         encryptRadio.addEventListener("change", handleRadioChange);

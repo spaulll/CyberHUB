@@ -1,9 +1,11 @@
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
+import base64
 # Custom modules
 from email_breach import EmailBreach   # noqa: F401
 from pass_breach import PassBreach 
 from hash_identifier import HashIdentifier
+from encryption_decryption import RSAEncryption
 
 import sys
 print(sys.version) # required by subhasish
@@ -109,19 +111,27 @@ def hashIdentifier():
     #return render_template('passwordleak.html', jsonData=None)
     return jsonify({"error": "Method not allowed"}), 405
 
-@app.route("/api/massageEncode", methods=['GET', 'POST'])
-def massageEncode():
+@app.route("/api/massageEncode/<rValue>", methods=['POST'])
+def massageEncode(rValue):
     if request.method == 'POST':
-        #password = request.form.get('password')
-        data = request.json # retrive the jason data which is send from frontend
-        cipherText = data.get('encodedMassage') # It retrives the encoded massage out of data
-        
-        print(f"Received email from the form: {cipherText}")
-        # data return from here as jason format by default i'm returning a base64 encoded value
-        Data = {"massage": "aGk=" }
-        # Log the data in console
-        jsonData=jsonify(Data).json
-        return jsonData,200
+        data = request.json  # Retrieve the JSON data sent from the frontend
+        plainText = data.get('encodedMassage')  # Retrieve the encoded message from the data
+
+        print(f"Received message from the frontend: {plainText}")
+
+        if rValue == 'encrypt':
+            # Perform encryption
+            encrypted_message = RSAEncryption().encrypt(plainText)
+            return jsonify(encrypted_message), 200
+        elif rValue == 'decrypt':
+            # Perform decryption
+            decoded_message = base64.b64decode(plainText).decode('utf-8')
+            print(f"encoded massage:{plainText},  decoded from :{decoded_message}")
+            decrypted_message = RSAEncryption().decrypt(decoded_message)
+            return jsonify(decrypted_message), 200
+        else:
+            return jsonify({'error': 'Invalid operation specified'}), 400
+
 
     # If it's a GET request or any other method, render the form template
     #return render_template('passwordleak.html', jsonData=None)
