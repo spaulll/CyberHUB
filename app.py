@@ -126,11 +126,11 @@ def massageEncode(rValue):
         elif rValue == 'decrypt':
             # Perform decryption
             decoded_message = base64.b64decode(plainText).decode('utf-8')
-            print(f"encoded massage:{plainText},  decoded from :{decoded_message}")
+            print(f"encoded massage:{plainText} ,  decoded from : {decoded_message}")
             decrypted_message = RSAEncryption().decrypt(decoded_message)
             return jsonify(decrypted_message), 200
         else:
-            return jsonify({'error': 'Invalid operation specified'}), 400
+            return jsonify({'error': 'Acess Forbidden'}), 404
 
 
     # If it's a GET request or any other method, render the form template
