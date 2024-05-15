@@ -24,7 +24,7 @@ const fetchDataEN = async (event) => {
     let responseData = await response.json();
     console.log(responseData);
     const messagep = String(responseData.message);
-    DataDisplay.innerHTML = messagep;
+    DataDisplay.innerHTML = "<span> Your encrypted message is: </span> <strong>" + messagep + "</strong>";
   } catch (error) {
     console.error('Error:', error);
   }
@@ -47,12 +47,18 @@ const fetchDataDN = async (event) => {
     console.log(response.status);
     let responseData = await response.json();
     console.log(responseData);
-    const messagep = String(atob(responseData.message));
-    DataDisplay.innerHTML = messagep;
+    if (responseData.status !== "failed") {
+      const messagep = String(atob(responseData.message));
+      DataDisplay.innerHTML = "<span> Your decrypted message is: </span> <strong>" + messagep + "</strong>";
+    } else {
+      DataDisplay.innerHTML = "<span> Decryption failed: </span> <strong>" + responseData.error + "</strong>";
+    }
+    
   } catch (error) {
     console.error('Error:', error);
   }
 };
+
 
 toggleSwitch.addEventListener('change', () => {
   toggleText.forEach(text => text.classList.toggle('active'));
