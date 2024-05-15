@@ -1,6 +1,6 @@
-{%extends 'navigation.html' %}
-{% block body%}
-<div>
+{% extends 'navigation.html' %}
+{% block body %}
+<div class="container">
     <div class="form">
         <form method="POST">
             <input type="email" id="email" name="email" placeholder="user@example.com" required>
@@ -12,7 +12,5 @@
         <ul id="jsonData"></ul>
     </div>
 </div>
-<script src="{{url_for('static',filename='js/email_api_fetch.js')}}"></script>
-</body>
-</html>
+<script src="{{ url_for('static', filename='js/email_api_fetch.js') }}"></script>
 {% endblock %}
