@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberHub</title>
     <link rel="stylesheet" href="../static/css/navigation.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Radio+Canada+Big:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 </head>
 <script src="../static/js/navigation.js" defer></script>
 <body>
     <div class="navigation">
         <div class="topnav" id="Topnav">
             <a href="{{ url_for('index_home') }}" class="menuitems" id="index">Home</a>
-            <a href="{{ url_for('emailleak') }}" class="menuitems" id="emailleak">DarkWeb Email Leak Check</a>
-            <a href="{{ url_for('passwordleak') }}" class="menuitems" id="passwordleak">DarkWeb Password Leak Check</a>
-            <a href="{{ url_for('hashid') }}" class="menuitems" id="hashid">Hash Identifier</a>
             <a href="{{ url_for('securemessage') }}" class="menuitems" id="securemessage">Secure Message</a>
+            <a href="{{ url_for('hashid') }}" class="menuitems" id="hashid">Hash Identifier</a>
+            <a href="{{ url_for('passwordleak') }}" class="menuitems" id="passwordleak">DarkWeb Password Leak Check</a>
+            <a href="{{ url_for('emailleak') }}" class="menuitems" id="emailleak">DarkWeb Email Leak Check</a>
             <a href="{{ url_for('help') }}" class="menuitems" id="help">Help & FAQ</a>
             <a href="javascript:void(0);" class="icon" onclick="responsive()">
                 <svg width="20px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
