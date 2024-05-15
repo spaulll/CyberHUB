@@ -91,7 +91,10 @@ body{
     .topnav.responsive {
         position: fixed;
         width: 100%;
-        right: 0;
+        /* right: 0; */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
     .topnav.responsive a.icon {
     position: absolute;
@@ -99,8 +102,7 @@ body{
     top: 0;
     }
     .topnav.responsive a {
-    float: none;
-    display: block;
+    display: flex;
     text-align: left;
     }
 }
@@ -143,16 +145,6 @@ body{
     border-radius: 1rem;
     box-shadow: 0.3rem 0.3rem 0.6rem rgb(209, 209, 209), -0.2rem -0.2rem 0.5rem rgb(255, 255, 255);
     font-size: 30px;
-}
-
-.jsonData_class {
-    text-align: center;
-}
-
-.jsonData_class > div {
-    display: inline-block;
-    font-family: "arial";
-    font-size: 20px;
 }
 
 #line1 {

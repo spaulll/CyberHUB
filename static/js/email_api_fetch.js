@@ -1,16 +1,14 @@
 function dataFormater(response) {
     let data = "";
     response.data.forEach(breach => {
-        data += "<li>";
         data += "<img src=\"" + breach.LogoPath + "\" alt=\"" + breach.Name + "\">";
-        data += "<ul>";
-        data += "<li><strong>Name:</strong> " + breach.Name + "</li>";
-        data += "<li><strong>Domain Name:</strong> " + breach.Domain + "</li>";
-        data += "<li><strong>Breached On:</strong> " + breach.BreachDate + "</li>";
-        data += "<li><strong>Description:</strong> " + breach.Description + "</li>";
-        data += "<li><strong>Data Classes:</strong> " + breach.DataClasses.join(", ") + "</li>";
-        data += "</ul>";
-        data += "</li>";
+        data += "<div id=\"details\">";
+        data += "<div><strong>Name:</strong> " + breach.Name + "</div>";
+        data += "<div><strong>Domain Name:</strong> " + breach.Domain + "</div>";
+        data += "<div><strong>Breached On:</strong> " + breach.BreachDate + "</div>";
+        data += "<div><strong>Description:</strong> " + breach.Description.replaceAll("  ","") + "</div>";
+        data += "<div><strong>Data Classes:</strong> " + breach.DataClasses.join(", ") + "</div>";
+        data += "</div>";
     });
     return data;
 }
