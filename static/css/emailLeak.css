@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    margin-bottom: 20px;
+}
+
+.form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: #0056b3;
+}
+
+.jsonData_class {
+    margin-top: 20px;
+}
+
+.jsonData_class ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.jsonData_class li {
+    display: flex;
+    align-items: center;
+    background-color: rgba(249, 249, 249, 0.8); /* Translucent background for list items */
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.jsonData_class img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.jsonData_class ul {
+    padding-left: 0;
+}
+
+.jsonData_class li ul {
+    padding-left: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+.jsonData_class li ul li {
+    padding: 0;
+    margin: 5px 0;
+}
