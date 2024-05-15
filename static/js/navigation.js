@@ -1,7 +1,7 @@
 function active() {
     pathname = window.location.pathname;
     pathname = pathname.replace("/","")
-    if (pathname === "/") {
+    if (pathname === "/" || pathname === "") {
         pathname = "index"
     }
     var a = document.getElementById(pathname)
