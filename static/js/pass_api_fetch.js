@@ -64,4 +64,11 @@ const fetchData = async (event) => {
     }
 };
 
+const enter = async (event) => {
+    if (event.key === "Enter") {
+        submitBtn.click();
+    }
+};
+
+document.addEventListener("DOMContentLoaded", enter);
 submitBtn.addEventListener("click", fetchData);
