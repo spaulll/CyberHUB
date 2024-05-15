@@ -7,6 +7,9 @@ from pass_breach import PassBreach
 from hash_identifier import HashIdentifier
 from encryption_decryption import RSAEncryption
 
+import json
+
+
 import sys
 print(sys.version) # required by subhasish
 
@@ -56,7 +59,11 @@ def emailBreachChecker():
         #         "Domain": "gemini.com",
         #         "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
         #         "Name": "Gemini"}
-        Data=EmailBreach().getBreachInfo(email)
+        # Data=EmailBreach().getBreachInfo(email)
+
+        with open('.\\json\\big_resp.json', 'r') as file:
+            Data = json.load(file)
+
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
         print("execution done ")
