@@ -109,3 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(error);
     }
 });
+
+const enter = async (event) => {
+    if (event.key === "Enter") {
+        submitBtn.click();
+    }
+};
+
+document.addEventListener("DOMContentLoaded", enter);

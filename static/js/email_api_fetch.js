@@ -23,9 +23,6 @@ const submitBtn = document.querySelector("#submit");
 
 const fetchData = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
-    if (event.key === "Enter") {
-        submitBtn.click();
-    }
     try {
         const emailInput = await document.querySelector("#email").value;
         if (emailInput !== "" && emailInput.search("@") !== -1) {
@@ -51,4 +48,11 @@ const fetchData = async (event) => {
     }
 };
 
+const enter = async (event) => {
+    if (event.key === "Enter") {
+        submitBtn.click();
+    }
+};
+
+document.addEventListener("DOMContentLoaded", enter);
 submitBtn.addEventListener("click", fetchData);
