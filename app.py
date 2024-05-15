@@ -51,12 +51,12 @@ def emailBreachChecker():
         
         # Assuming emailBreach().getBreachInfo(email) is returning some data
         # Replace it with your actual logic
-        Data = {"BreachDate": "2022-12-13",
-                "DataClasses": ["Email addresses", "Partial phone numbers"],
-                "Domain": "gemini.com",
-                "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
-                "Name": "Gemini"}
-        # Data=EmailBreach().getBreachInfo(email)
+        # Data = {"BreachDate": "2022-12-13",
+        #         "DataClasses": ["Email addresses", "Partial phone numbers"],
+        #         "Domain": "gemini.com",
+        #         "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
+        #         "Name": "Gemini"}
+        Data=EmailBreach().getBreachInfo(email)
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
         print("execution done ")
