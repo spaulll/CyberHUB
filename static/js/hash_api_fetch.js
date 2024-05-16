@@ -1,23 +1,17 @@
-function dataFormater (response) {
-    let data = "";
-    // data += "<img src=\"" + response.LogoPath + "\" alt=\""+ response.Name +"\" style=\"width:10px;height:10px;\" >";
-    // data += "<li> Name: " + response.Name + " </li>";
-    // data += "<li> Domain Name: " + response.Domain + " </li>";
-    // data += "<li> Breached On: " + response.BreachDate + " </li>";
-    // data += "<li> Affected Emails: " + response.DataClasses[0] + " </li>";
-    // data += "<li> Affected Phone Numbers: " + response.DataClasses[1] + " </li>";
-    return data;
-}
-
-function dataFormater(responseData) {
-    let formattedData = responseData.status + ': ';
-    formattedData += responseData.types.join(', ');
-    return formattedData;
+function dataFormater(responseData,Display) {
+    if(String(responseData.status)==='success'){
+        let formattedData = responseData.types.join(', ');
+        let data = `<span> The hash is possibly: </span> <strong id="data">` + formattedData +  "</strong>";
+        Display.innerHTML = data;
+    }
+    else{
+        Display.innerHTML = `<span> Can't identify this hash. </span>`;
+    }
 }
 const apiUrl = "http://127.0.0.1:5000/api/hash-id";
 
-const jsonDataDisplay = document.querySelector("#jsonData");
-const submitBtn = document.querySelector("#submit");
+const jsonDataDisplay = document.querySelector("#jsonDataDisplay");
+const submitBtn = document.querySelector(".submit-btn");
 
 const fetchData = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
@@ -37,7 +31,7 @@ const fetchData = async (event) => {
                 let responseData = await response.json();
                 console.log(responseData);
                 // Update DOM with response data
-                jsonDataDisplay.innerText = dataFormater(responseData);
+                dataFormater(responseData,jsonDataDisplay);
                 // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
                 //submitBtn.disabled = true; // Disable the submit button
                 // document.querySelector("#password").disabled = true;

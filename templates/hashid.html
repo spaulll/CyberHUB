@@ -1,13 +1,31 @@
 {%extends 'navigation.html' %}
 {% block body%}
 <style>
+    .heading {
+        max-width: 700px;
+        margin: 100px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        font-family: "Radio Canada Big", sans-serif;
+        font-size: 50px;
+        font-weight: 700;
+    }  
+    .description {
+        max-width: 700px;
+        margin: 10px auto 0 auto;
+        padding: 20px;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        color: #666;
+    }
+
     .form {
         max-width: 700px;
         margin: 100px auto 0 auto;
         padding: 20px;
         text-align: center;
         background-color: #f5f5f5;
-        padding: 30px;
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
@@ -20,8 +38,9 @@
         border-radius: 4px;
         box-sizing: border-box;
     }
-    .json-data {
-        margin-top: 30px;
+    .json-Data {
+        max-width: 700px;
+        margin: 30px auto 0 auto;
         padding: 20px;
         background-color: #f5f5f5;
         border-radius: 10px;
@@ -89,7 +108,9 @@
         transform: scale(0.95);
     }
 </style>
-<div>
+<h1 class="heading">Hash Identifier</h1>
+<p class="description">Ensure your messages are securely exchanged.</p>
+<div class="form-container">
     <div class="form">
         <form method="POST" action="{{ url_for('hashid') }}">
             <input type="text" class="field" id="hash" name="hash" placeholder="Enter hash here." required>
@@ -103,8 +124,8 @@
             </button>
         </form>           
     </div>
-    <div class="jsonData">
-        <div id="jsonData"></div>
+    <div class="json-Data">
+        <p id="jsonDataDisplay"></p>
     </div>        
 </div>
 <script src="{{url_for('static',filename='js/hash_api_fetch.js')}}"></script>
