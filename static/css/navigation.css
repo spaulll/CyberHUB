@@ -20,10 +20,34 @@ body{
     font-weight: 400;
     font-size: 30px;
 }
-
-/* Add a black background color to the top navigation */
+.home ul li{
+    list-style: none;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+.home ul li:before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-image: url("../assets/ul.svg");
+    transform: translateY(-4px);
+    -webkit-transform: translateY(-4px);
+    -moz-transform: translateY(-4px);
+    -ms-transform: translateY(-4px);
+    -o-transform: translateY(-4px);
+}
 .topnav {
     background-color: var(--navbackground);
+    z-index: 9999;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -33,43 +57,38 @@ body{
     top: 0;
     left: 0;
 }
-
-/* Style the links inside the navigation bar */
+.topnav img {
+    position: fixed;
+    height: 50px;
+    top: 0;
+    left: 0;
+    padding: 5px;
+}
+.topnav #logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .topnav a {
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 20px 16px;
     text-decoration: none;
+    font-family: "Radio Canada Big", sans-serif;
     font-size: 17px;
 }
-/* #index {order: 6;}
-#securemessage {order: 5;}
-#hashid {order: 4;}
-#passwordleak {order: 3;}
-#emailleak {order: 2;}
-#help {order: 1;} */
-
-/* .topnav a:first-child{
-} */
-
-/* Change the color of links on hover */
-.topnav a:hover {
+.topnav a:hover:not(:first-child) {
     background-color: #a0a0a0;
     color: black;
 }
-
-/* Add an active class to highlight the current page */
 .topnav a.active {
     background-color: rgba(0, 13, 61, 0.9);
     color: white;
 }
-
-/* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
     display: none;
 }
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 1155px) {
     .home{
         padding: 50px 30px;
     }
@@ -85,11 +104,10 @@ body{
     display: block;
     }
 }
-
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 1155px) {
     .topnav.responsive {
         position: fixed;
+        padding-top: 50px;
         width: 100%;
         /* right: 0; */
         display: flex;
@@ -106,7 +124,6 @@ body{
     text-align: left;
     }
 }
-
 .form {
     display: flex;
     justify-content: center;
@@ -146,7 +163,6 @@ body{
     box-shadow: 0.3rem 0.3rem 0.6rem rgb(209, 209, 209), -0.2rem -0.2rem 0.5rem rgb(255, 255, 255);
     font-size: 30px;
 }
-
 #line1 {
     overflow: hidden;
     white-space: nowrap;
@@ -155,7 +171,6 @@ body{
     animation: typing 1s steps(30, end) forwards;
     -webkit-animation: typing 1s steps(30, end) forwards;
 }
-
 #line2container {
     display: grid;
     place-items: center;
@@ -166,7 +181,6 @@ body{
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
 }
-
 #line2 {
     overflow: hidden;
     white-space: nowrap;
@@ -175,7 +189,6 @@ body{
     animation: typing  1s steps(30, end) 1s forwards;
     -webkit-animation: typing  1s steps(30, end) 1s forwards;
 }
-
 @keyframes typing {
     from {width: 0;}
     to {width: 100%;}
