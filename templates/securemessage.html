@@ -16,7 +16,7 @@
       </div>
       <input type="text" class="field" id="messageInput" name="plain" placeholder="Your message goes here" required>
       <button type="submit" class="submit-btn">
-        <span>Hover me</span>
+        <span id="submit"></span>
         <svg width="15px" height="10px" viewBox="0 0 13 10">
           <path d="M1,5 L11,5"></path>
           <polyline points="8 1 12 5 8 9"></polyline>
@@ -29,18 +29,23 @@
   </div>
 </div>
 <script src="{{ url_for('static', filename='js/messageEncode.js') }}"></script>
-<script>
-
-</script>
 <style>
-.container {
-  max-width: 600px;
-  margin: 100px auto 0 auto; /* This will center the container horizontally */
-  padding: 20px;
-  text-align: center;
-}
+  .container {
+    max-width: 700px;
+    margin-top: 100px;
+    margin: 100px auto 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .container h1 {
+    font-family: "Radio Canada Big", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+  }
 
   .description {
+    font-family: "Montserrat", sans-serif;
     font-size: 18px;
     color: #666;
     margin-bottom: 30px;
@@ -92,6 +97,7 @@
 
   #jsonDataDisplay {
     margin-right: 10px;
+    flex-direction: row;
   }
 
   .checkbox-wrapper-35 .switch {
@@ -272,18 +278,32 @@
   }
 
   .copy-btn {
+    display: inline;
+    height: 30px;
+    width: 30px;
     padding: 8px 12px;
-    background-color: #4caf50;
-    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    align-items: right;
-  }
+    transform:translateY(16px);
+    -webkit-transform:translateY(16px);
+    -moz-transform:translateY(16px);
+    -ms-transform:translateY(16px);
+    -o-transform:translateY(16px);
+}
 
   .copy-btn:hover {
-    background-color: #45a049;
+    transform: translateY(16px) scale(1.5);
+    -webkit-transform: translateY(16px) scale(1.5);
+    -moz-transform: translateY(16px) scale(1.5);
+    -ms-transform: translateY(16px) scale(1.5);
+    -o-transform: translateY(16px) scale(1.5);
+}
+@media screen and (max-width: 700px) {
+  .copy-btn {
+    margin-top: 20px;
   }
-
+}
 </style>
+
 {% endblock %}
