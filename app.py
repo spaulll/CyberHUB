@@ -137,7 +137,7 @@ def massageEncode(rValue):
             decrypted_message = RSAEncryption().decrypt(decoded_message)
             return jsonify(decrypted_message), 200
         else:
-            return jsonify({'error': 'Acess Forbidden'}), 404
+            return jsonify({'error': 'Access Forbidden'}), 404
 
 
     # If it's a GET request or any other method, render the form template
