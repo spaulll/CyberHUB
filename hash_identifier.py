@@ -46,7 +46,7 @@ class HashIdentifier:
 
         if algorithms:
             return {"status": "success", "types": algorithms}      #found
-        return {"status": "failed", "types": None}         #not found
+        return {"status": "failed", "types": "None"}         #not found
 
 if __name__ == '__main__':
 
