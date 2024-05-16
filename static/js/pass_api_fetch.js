@@ -3,8 +3,8 @@ function delay(ms) {
 }
 
 async function animateValue(obj, start, end, duration) {
-    await delay(1400);
-    let startTimestamp = null;
+    await delay(500);
+    let startTimestamp = 0;
     const step = (timestamp) => {
     if (!startTimestamp) 
         startTimestamp = timestamp;
@@ -20,18 +20,18 @@ async function animateValue(obj, start, end, duration) {
 function dataFormater (jsonDataDisplay,response) {
     if(response.isbreached == "True")
     {
-        jsonDataDisplay.innerHTML = "<p id=\"line1\"> " + "The Password has been breached </p> <div id=\"line2container\"><p id=\"line2\"> <span id=\"num\">0</span> times </p></div>";
+        jsonDataDisplay.innerHTML = `<span> The Password has been breached </span> <strong class="data" id="num">0</strong>`;
     }
     if(response.isbreached == "False")
     {
-        jsonDataDisplay.innerHTML = "<p id=\"line1\"> " + "The Password hasn't been breached " + "</p><div>";
+        jsonDataDisplay.innerHTML = `<span> The Password hasn't been breached </span>`;
     }
 }
 
 const apiUrl = "http://127.0.0.1:5000/api/password-breach";
 
-const jsonDataDisplay = document.querySelector("#jsonData");
-const submitBtn = document.querySelector("#submit");
+const jsonDataDisplay = document.querySelector("#jsonDataDisplay");
+const submitBtn = document.querySelector(".submit-btn");
 
 const fetchData = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
@@ -53,8 +53,10 @@ const fetchData = async (event) => {
                 // console.log(typeof(responseData.times));
                 // Update DOM with response data
                 dataFormater(jsonDataDisplay,responseData);
-                const obj = document.getElementById("num");
-                animateValue(obj, 0, responseData.times, 3000)
+                if(responseData.isbreached == "True"){
+                    const obj = document.getElementById("num");
+                    animateValue(obj, 0, responseData.times, 3000);
+                }
                 // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
                 //submitBtn.disabled = true; // Disable the submit button
                 // document.querySelector("#password").disabled = true;

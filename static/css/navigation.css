@@ -41,6 +41,11 @@ body{
 .topnav a:hover:not(:first-child) {
     background-color: #a0a0a0;
     color: black;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
 }
 .topnav a.active {
     background-color: rgba(0, 13, 61, 0.9);
