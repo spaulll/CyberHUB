@@ -24,7 +24,17 @@ const fetchDataEN = async (event) => {
     let responseData = await response.json();
     console.log(responseData);
     const messagep = String(responseData.message);
-    DataDisplay.innerHTML = "<span> Your encrypted message is: </span> <strong>" + messagep + "</strong>";
+    DataDisplay.innerHTML = `<span> Your encrypted message is: </span> <strong id="data">` + messagep + "</strong>"+` <button id="copyButton" class="copy-btn">Copy</button>`;
+    document.getElementById('copyButton').addEventListener('click', function() {
+      const message = document.getElementById('data').innerText;
+      if (message) {
+        navigator.clipboard.writeText(message).then(function() {
+          alert('Message copied to clipboard');
+        }, function() {
+          alert('Failed to copy message');
+        });
+      }
+    });
   } catch (error) {
     console.error('Error:', error);
   }
@@ -47,17 +57,31 @@ const fetchDataDN = async (event) => {
     console.log(response.status);
     let responseData = await response.json();
     console.log(responseData);
+    const DataDisplay = document.getElementById('jsonDataDisplay'); // Fix reference to DataDisplay
+
     if (responseData.status !== "failed") {
       const messagep = String(atob(responseData.message));
-      DataDisplay.innerHTML = "<span> Your decrypted message is: </span> <strong>" + messagep + "</strong>";
+      DataDisplay.innerHTML = "<span> Your decrypted message is: </span> <strong id='data'>" + messagep + "</strong>" + ` <button id="copyButton" class="copy-btn">Copy</button>`;
+
+      const copyButton = document.getElementById('copyButton');
+      copyButton.addEventListener('click', function() {
+        const messaged = document.getElementById('data').innerText;
+        if (messaged) {
+          navigator.clipboard.writeText(messaged).then(function() {
+            alert('Message copied to clipboard');
+          }, function() {
+            alert('Failed to copy message');
+          });
+        }
+      });
     } else {
       DataDisplay.innerHTML = "<span> Decryption failed: </span> <strong>" + responseData.error + "</strong>";
     }
-    
   } catch (error) {
     console.error('Error:', error);
   }
 };
+
 
 
 toggleSwitch.addEventListener('change', () => {
