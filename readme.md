@@ -1,5 +1,5 @@
 
-# Cyber HUB
+![App Logo](/static/assets/icon_full.png)
 
 An Innovative Web App for Real-Time Data Protection and Breach Prevention
 

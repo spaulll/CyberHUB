@@ -1,34 +1,4 @@
 {% extends 'navigation.html' %} {% block body %}
-<div class="container">
-  <h1>Secure Message Exchange</h1>
-  <p class="description">Ensure your messages are securely exchanged.</p>
-  <div class="form-container">
-    <form method="POST" action="{{ url_for('securemessage') }}">
-      <div class="checkbox-wrapper-35">
-        <input value="private" name="switch" id="switch" type="checkbox" class="switch" checked>
-        <label for="switch">
-          <span class="switch-x-text">Ready to </span>
-          <span class="switch-x-toggletext">
-            <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Decrypt</span>
-            <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Encrypt</span>
-          </span>
-        </label>
-      </div>
-      <input type="text" class="field" id="messageInput" name="plain" placeholder="Your message goes here" required>
-      <button type="submit" class="submit-btn">
-        <span id="submit"></span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-    </form>
-  </div>
-  <div class="json-data">
-    <p id="jsonDataDisplay"></p>
-  </div>
-</div>
-<script src="{{ url_for('static', filename='js/messageEncode.js') }}"></script>
 <style>
   .container {
     max-width: 700px;
@@ -38,6 +8,7 @@
   }
 
   .container h1 {
+    color: var(--heading);
     font-family: "Radio Canada Big", sans-serif;
     font-size: 50px;
     font-weight: 700;
@@ -46,31 +17,16 @@
   .description {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
-    color: #666;
+    color: var(--description);
     margin-bottom: 30px;
   }
 
   .form-container {
-    background-color: #f5f5f5;
+    background-color: var(--formBg);
+    backdrop-filter: blur(10px);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .toggle-text {
-    font-size: 14px;
-    color: #666;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .toggle-text:first-child {
-    left: 10px;
-  }
-
-  .toggle-text:last-child {
-    right: 10px;
   }
 
   .field {
@@ -86,7 +42,8 @@
   .json-data {
     margin-top: 30px;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: var(--outputBg);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -95,8 +52,50 @@
   }
 
   #jsonDataDisplay {
+    color: var(--outputText);
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
     margin-right: 10px;
     flex-direction: row;
+  }
+
+  .copiedtext {
+    visibility: hidden;
+    width: 160px;
+    background-color: var(--popupBg);
+    color: var(--popupText);
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 1;
+    top: -45px;
+    margin-left: -63px;
+}
+  .copiedtext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--popupBg) transparent transparent transparent;
+  }
+  .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 2s;
+    animation: fadeIn 2s;
+}
+  @-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
   }
 
   .checkbox-wrapper-35 .switch {
@@ -108,7 +107,7 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    color: #78768d;
+    color: var(--toggleText);
     cursor: pointer;
     display: -webkit-box;
     display: -webkit-flex;
@@ -131,7 +130,7 @@
   }
 
   .checkbox-wrapper-35 .switch + label::before {
-    background-color: #05012c;
+    background-color: var(--toggleButtonDecrypt);
     border-radius: 500px;
     height: 15px;
     margin-right: 8px;
@@ -141,7 +140,7 @@
   }
 
   .checkbox-wrapper-35 .switch + label::after {
-    background-color: #fff;
+    background-color: var(--toggleButton);
     border-radius: 13px;
     box-shadow: 0 3px 1px 0 rgba(37, 34, 71, 0.05), 0 2px 2px 0 rgba(37, 34, 71, 0.1), 0 3px 3px 0 rgba(37, 34, 71, 0.05);
     height: 13px;
@@ -198,7 +197,7 @@
   }
 
   .checkbox-wrapper-35 .switch:checked + label::before {
-    background-color: #ffb500;
+    background-color: var(--toggleButtonEncrypt);
   }
 
   .checkbox-wrapper-35 .switch:checked + label::after {
@@ -235,7 +234,7 @@
     left: 0;
     display: block;
     border-radius: 50px;
-    background: #b1dae7;
+    background: var(--submitButtonBg);
     width: 45px;
     height: 45px;
     transition: all 0.3s ease;
@@ -247,7 +246,7 @@
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: #234567;
+    color: var(--submitButtonText);
   }
 
   .submit-btn svg {
@@ -257,7 +256,7 @@
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: #234567;
+    stroke: var(--submitButtonArrow);
     stroke-width: 2;
     transform: translateX(-5px);
     transition: all 0.3s ease;
@@ -265,7 +264,7 @@
 
   .submit-btn:hover:before {
     width: 100%;
-    background: #b1dae7;
+    background: var(--submitButtonBg);
   }
 
   .submit-btn:hover svg {
@@ -304,5 +303,34 @@
   }
 }
 </style>
-
+<div class="container">
+  <h1>Secure Message Exchange</h1>
+  <p class="description">Ensure your messages are securely exchanged.</p>
+  <div class="form-container">
+    <form method="POST" action="{{ url_for('securemessage') }}">
+      <div class="checkbox-wrapper-35">
+        <input value="private" name="switch" id="switch" type="checkbox" class="switch" checked>
+        <label for="switch">
+          <span class="switch-x-text">Ready to </span>
+          <span class="switch-x-toggletext">
+            <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Decrypt</span>
+            <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Encrypt</span>
+          </span>
+        </label>
+      </div>
+      <input type="text" class="field" id="messageInput" name="plain" placeholder="Your message goes here" required>
+      <button type="submit" class="submit-btn">
+        <span id="submit"></span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </form>
+  </div>
+  <div class="json-data">
+    <p id="jsonDataDisplay"></p>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/messageEncode.js') }}"></script>
 {% endblock %}

@@ -1,13 +1,33 @@
 :root {
     --background: #FCFBF4;
-    --navbackground: rgba(0, 0, 0, 0.9);
+    --menuitemsBg: rgba(0, 0, 0, 0.9);
+    --menuitemsText: #f2f2f2;
+    --menuitemsHoverText: #000;
+    --menuitemsHoverBg: #a0a0a0;
+    --menuitemsActiveBg: rgba(0, 13, 61, 0.9);
+    --menuitemsActiveText: #ffffff;
+    --heading: #000;
+    --description: #666;
+    --listElements: #666;
+    --formBg: #f5f5f5;
+    --outputBg: #f5f5f5;
+    --outputText: #000;
+    --toggleText: #78768d;
+    --toggleButton: #fff;
+    --toggleButtonDecrypt: #05012c;
+    --toggleButtonEncrypt: #ffb500;
+    --submitButtonText: #234567;
+    --submitButtonBg: #b1dae7;
+    --submitButtonArrow: #234567;
+    --popupBg: #555;
+    --popupText: #fff;
 }
 body{
     background-color: var(--background);
     padding: 0%;
 }
 .topnav {
-    background-color: var(--navbackground);
+    background-color: var(--menuitemsBg);
     z-index: 9999;
     display: flex;
     flex-direction: row;
@@ -31,7 +51,7 @@ body{
     left: 0;
 }
 .topnav a {
-    color: #f2f2f2;
+    color: var(--menuitemsText);
     text-align: center;
     padding: 20px 16px;
     text-decoration: none;
@@ -39,8 +59,8 @@ body{
     font-size: 17px;
 }
 .topnav a:hover:not(:first-child) {
-    background-color: #a0a0a0;
-    color: black;
+    background-color: var(--menuitemsHoverBg);
+    color: var(--menuitemsHoverText);
     border-radius: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -48,8 +68,8 @@ body{
     -o-border-radius: 15px;
 }
 .topnav a.active {
-    background-color: rgba(0, 13, 61, 0.9);
-    color: white;
+    background-color: var(--menuitemsActiveBg);
+    color: var(--menuitemsActiveText);
 }
 .topnav .icon {
     display: none;
