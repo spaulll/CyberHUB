@@ -17,7 +17,7 @@ function dataFormater(response) {
 const apiUrl = "http://127.0.0.1:5000/api/email-breach";
 
 const jsonDataDisplay = document.querySelector("#jsonData");
-const submitBtn = document.querySelector("#submit");
+const submitBtn = document.querySelector(".submit-btn");
 
 const fetchData = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
