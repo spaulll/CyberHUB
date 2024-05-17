@@ -59,16 +59,19 @@ def emailBreachChecker():
         #         "Domain": "gemini.com",
         #         "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
         #         "Name": "Gemini"}
-        # Data=EmailBreach().getBreachInfo(email)
+        Data=EmailBreach().getBreachInfo(email)
 
-        with open('.\\json\\big_resp.json', 'r') as file:
-            Data = json.load(file)
+        # with open('.\\json\\big_resp.json', 'r') as file:
+        #     Data = json.load(file)
 
         # Log the data in console
         app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
         print("execution done ")
-
-        return jsonify(Data), 200
+        
+        if(Data.get("status", "") == "failed"):
+            return jsonify(Data), 500
+        else:
+            return jsonify(Data), 200
     
     # If it's a GET request or any other method, render the form template
     return jsonify({"error": "Method not allowed"}), 405

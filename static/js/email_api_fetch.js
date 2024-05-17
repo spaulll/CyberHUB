@@ -1,16 +1,21 @@
 function dataFormater(response) {
-    let data = "";
-    response.data.forEach(breach => {
-        data += "<img src=\"" + breach.LogoPath + "\" alt=\"" + breach.Name + "\">";
-        data += "<div id=\"details\">";
-        data += "<div><strong>Name:</strong> " + breach.Name + "</div>";
-        data += "<div><strong>Domain Name:</strong> " + breach.Domain + "</div>";
-        data += "<div><strong>Breached On:</strong> " + breach.BreachDate + "</div>";
-        data += "<div><strong>Description:</strong> " + breach.Description.replaceAll("  ","") + "</div>";
-        data += "<div><strong>Data Classes:</strong> " + breach.DataClasses.join(", ") + "</div>";
-        data += "</div>";
-    });
-    return data;
+    if(response.status == "failed"){
+        return "<div>" + response.message + "</div>";
+    }
+    else{
+        let data = "";
+        response.data.forEach(breach => {
+            data += "<img src=\"" + breach.LogoPath + "\" alt=\"" + breach.Name + "\">";
+            data += "<div id=\"details\">";
+            data += "<div><strong>Name:</strong> " + breach.Name + "</div>";
+            data += "<div><strong>Domain Name:</strong> " + breach.Domain + "</div>";
+            data += "<div><strong>Breached On:</strong> " + breach.BreachDate + "</div>";
+            data += "<div><strong>Description:</strong> " + breach.Description.replaceAll("  ","") + "</div>";
+            data += "<div><strong>Data Classes:</strong> " + breach.DataClasses.join(", ") + "</div>";
+            data += "</div>";
+            });
+        return data;
+    }
 }
 
 
