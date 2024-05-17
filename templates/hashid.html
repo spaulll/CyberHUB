@@ -27,11 +27,13 @@
         padding: 20px;
         text-align: center;
         background-color: var(--formBg);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(var(--formBlurAmount));
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .form input[type=text] {
+        background-color: var(--formBg);
+        backdrop-filter: blur(var(--formBlurAmount));
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
