@@ -1,6 +1,4 @@
-
 {% block body%}
-
 {% endblock %}
 <footer>
     <style>
@@ -10,11 +8,12 @@
             left: 0;
             bottom: 0;
             width: 100%;
-            background-color: rgba(207, 207, 207, 0.8); /* Translucent background color */
-            color: #000000; /* Black text color */
-            padding: 20px;
+            background-color: #222; /* Dark background color */
+            color: #fff; /* White text color */
+            padding: 10px 0; /* Reduced padding for a smaller footer */
             text-align: center;
-            transition: background-color 0.3s; /* Smooth transition on hover */
+            font-family: 'Arial', sans-serif; /* Font style */
+            z-index: 9999; /* Ensure the footer stays on top of other content */
         }
 
         .footer-content {
@@ -22,39 +21,84 @@
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: center; /* Center items */
             align-items: center;
         }
 
         .footer-content p {
             margin: 0;
-            flex: 0 0 auto;
-            font-size: 14px;
-            margin-right: 10px;
+            font-size: 12px; /* Reduced font size */
+            width: 100%; /* Make copyright text full width */
         }
 
         .menuitems {
-            color: #000000; /* Black text color */
+            color: #fff;
             text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s; /* Smooth transition on hover */
+            font-size: 12px; /* Reduced font size */
+            margin: 0 10px; /* Reduced margin */
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
         }
 
         .menuitems:hover {
-            color: #dddddd; /* Hover text color */
+            color: #ffcc00;
+        }
+
+        .menuitems i {
+            margin-right: 5px;
+        }
+
+        .social-icons {
+            margin: 10px 0; /* Reduced margin */
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 16px; /* Reduced font size */
+            margin: 0 8px; /* Reduced margin */
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ffcc00;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 5px;
+            }
+
+            .footer-content p {
+                font-size: 10px;
+            }
+
+            .menuitems {
+                font-size: 10px;
+                margin: 0 5px;
+            }
+
+            .social-icons a {
+                font-size: 14px;
+                margin: 0 5px;
+            }
         }
     </style>
     <div class="footer-content">
-        <p>&copy; 2024 CyberHub. All rights reserved.</p>
-        <a href="{{ url_for('index_home') }}" class="menuitems" id="index">Home</a>
-        <a href="{{ url_for('securemessage') }}" class="menuitems" id="securemessage">Secure Message</a>
-        <a href="{{ url_for('hashid') }}" class="menuitems" id="hashid">Hash Identifier</a>
-        <a href="{{ url_for('passwordleak') }}" class="menuitems" id="passwordleak">DarkWeb Password Leak Check</a>
-        <a href="{{ url_for('emailleak') }}" class="menuitems" id="emailleak">DarkWeb Email Leak Check</a>
-        <a href="{{ url_for('help') }}" class="menuitems" id="help">Help & FAQ</a>
-    </div>
-</footer>
-
-
-
-
+        <footer>
+            <div class="footer-content">
+                <a href="{{ url_for('securemessage') }}" class="menuitems" id="securemessage"><i class="fas fa-lock"></i>Secure Message</a>
+                <a href="{{ url_for('hashid') }}" class="menuitems" id="hashid"><i class="fas fa-fingerprint"></i>Hash Identifier</a>
+                <a href="{{ url_for('passwordleak') }}" class="menuitems" id="passwordleak"><i class="fas fa-key"></i>DarkWeb Password Leak Check</a>
+                <a href="{{ url_for('emailleak') }}" class="menuitems" id="emailleak"><i class="fas fa-envelope"></i>DarkWeb Email Leak Check</a>
+                <a href="{{ url_for('help') }}" class="menuitems" id="help"><i class="fas fa-question-circle"></i>Help & FAQ</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2024 CyberHub. All rights reserved.</p>
+        </footer>
+        <script src="https://kit.fontawesome.com/788287f951.js" crossorigin="anonymous"></script>
