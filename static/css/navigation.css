@@ -52,13 +52,14 @@ body{
     top: 0;
     left: 0;
 }
+
 .topnav a {
     color: var(--menuitemsText);
     text-align: center;
     padding: 20px 16px;
     text-decoration: none;
     font-family: "Radio Canada Big", sans-serif;
-    font-size: 20px;
+    font-size: 14px;
 }
 .topnav a:hover:not(:first-child) {
     background-color: var(--menuitemsHoverBg);
@@ -69,7 +70,7 @@ body{
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
-    font-size: 22px;
+    font-size: 15px;
     transition: 0.5s;
     -webkit-transition: 0.7s;
     -moz-transition: 0.7s;
@@ -214,6 +215,7 @@ body{
 @media screen and (max-width: 1155px) {
     .topnav a:not(:first-child) {
         display: none;
+        backdrop-filter: blur(var(--formBlurAmount));
     }
     .topnav a.icon {
     float: right;
