@@ -96,26 +96,47 @@
         transform: scale(0.95);
     }
 
-#jsonData {
+    #jsonData {
     display: flex;
     align-items: center;
     flex-direction: column;
-    border: 1px solid #fb0000;
-}
-#jsonData img {
-    align-self: start;
-    width: 100px;
-    border: 1px solid #000000;
-}
-#details {
-    border: 1px solid #000000;
 }
 
-#details div + strong {
+#detailsContainer {
     display: flex;
-    flex-direction: column;
-    border: 1px solid #000000;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px;
 }
+
+#jsonData img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+#details {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+#details div {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Aligns items vertically in each div */
+    margin-bottom: 5px;
+}
+
+#details div strong {
+    width: 150px;
+    margin-right: 20px; /* Adjusted gap between label and data */
+}
+
+.resultData {
+    flex-grow: 1; /* Takes up remaining space */
+    white-space: pre-wrap;
+    margin-right: 20px;
+}
+
 </style>
 <h1 class="heading">DarkWeb Email Leak <br> Check</h1>
 <p class="description">Make sure your email information isn't exposed in DarkWeb</p>
