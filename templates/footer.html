@@ -1,0 +1,60 @@
+
+{% block body%}
+
+{% endblock %}
+<footer>
+    <style>
+        /* Footer styles */
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(207, 207, 207, 0.8); /* Translucent background color */
+            color: #000000; /* Black text color */
+            padding: 20px;
+            text-align: center;
+            transition: background-color 0.3s; /* Smooth transition on hover */
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-content p {
+            margin: 0;
+            flex: 0 0 auto;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .menuitems {
+            color: #000000; /* Black text color */
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s; /* Smooth transition on hover */
+        }
+
+        .menuitems:hover {
+            color: #dddddd; /* Hover text color */
+        }
+    </style>
+    <div class="footer-content">
+        <p>&copy; 2024 CyberHub. All rights reserved.</p>
+        <a href="{{ url_for('index_home') }}" class="menuitems" id="index">Home</a>
+        <a href="{{ url_for('securemessage') }}" class="menuitems" id="securemessage">Secure Message</a>
+        <a href="{{ url_for('hashid') }}" class="menuitems" id="hashid">Hash Identifier</a>
+        <a href="{{ url_for('passwordleak') }}" class="menuitems" id="passwordleak">DarkWeb Password Leak Check</a>
+        <a href="{{ url_for('emailleak') }}" class="menuitems" id="emailleak">DarkWeb Email Leak Check</a>
+        <a href="{{ url_for('help') }}" class="menuitems" id="help">Help & FAQ</a>
+    </div>
+</footer>
+
+
+
+
