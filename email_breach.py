@@ -50,7 +50,7 @@ class EmailBreach:
 
 
     def getBreachInfo(self, email):
-        data = self.isBreached(email)
+        data = self.isBreached(str(email))
         ic(data)
         
         if data is None:
@@ -70,8 +70,8 @@ class EmailBreach:
             all_entries.append(entry_info)
 
         if all_entries:
-            return {"status": message, "data": all_entries}
-        return {"status": message, "data": "Not found in any breach record"}
+            return {"status": message, "data": all_entries, "is_breached": True, "message": "found in breach record"}
+        return {"status": message, "data": "Not found in any breach record", "is_breached": False, "message": "not found in breach record"}
 
 if __name__ == '__main__':
     result = EmailBreach().getBreachInfo("djspaul99@gmail.com")
