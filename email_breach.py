@@ -1,34 +1,62 @@
+import os
 import requests
+from dotenv import load_dotenv
+from icecream import ic
 
 class EmailBreach:
-    # def __init__(self):
-    #     self.url = "https://data-breach-checker.p.rapidapi.com/api/breach"
-    #     self.headers = {
-    #         "X-RapidAPI-Key": "2b78d20d3emsh7c3af95a633e21ep1751c6jsn5becc352691a",
-    #         "X-RapidAPI-Host": "data-breach-checker.p.rapidapi.com"
-    #     }
+    def __init__(self):
+        self.keys = self.load_api_keys()
+        self.current_key_index = 0
+        self.url = "https://data-breach-checker.p.rapidapi.com/api/breach"
+
+    def load_api_keys(self):
+        load_dotenv('.env')
+        keys = os.getenv("API_KEYS").split(',')
+        keys = [key.strip() for key in keys]  # Strip leading and trailing whitespace
+        return keys
+
+    def get_next_key(self):
+        if self.current_key_index < len(self.keys) - 1:
+            self.current_key_index += 1
+        else:
+            self.current_key_index = 0
+        return self.keys[self.current_key_index]
 
     def isBreached(self, email):
-        self.url = "https://data-breach-checker.p.rapidapi.com/api/breach"
-        self.headers = {
-            "X-RapidAPI-Key": "2b78d20d3emsh7c3af95a633e21ep1751c6jsn5becc352691a",
-            "X-RapidAPI-Host": "data-breach-checker.p.rapidapi.com"
-        }
-        querystring = {"email": email}
-        try:
-            response = requests.get(self.url, headers=self.headers, params=querystring)
-            return response.json()
-        except requests.RequestException as e:
-            print("Request Error:", e)
-            return None
+        for _ in range(len(self.keys)):  # Try each API key
+            self.headers = {
+                "X-RapidAPI-Key": self.keys[self.current_key_index],
+                "X-RapidAPI-Host": "data-breach-checker.p.rapidapi.com"
+            }
+            querystring = {"email": email}
+            try:
+                response = requests.get(self.url, headers=self.headers, params=querystring)
+                ic(response.status_code)
+                ic("here11")
+                ic(self.keys[self.current_key_index])
+                response_json = response.json()
+                ic(response_json)
+                if "message" in response_json and "You have exceeded" in response_json["message"]:
+                    # Move to the next API key
+                    self.current_key_index = (self.current_key_index + 1) % len(self.keys)
+                    continue
+                else:
+                    return response_json  # Return the response if rate limit not exceeded
+                ic(response_json)
+            except requests.RequestException as e:
+                ic("Request Error:", e)
+                return None
+
+
 
     def getBreachInfo(self, email):
         data = self.isBreached(email)
-        # print(data)
-        message = data.get("message", "")
-        if data is None or "You have exceeded" in message:
-            return {"status": "failed", "message": "Something went wrong!"}
+        ic(data)
         
+        if data is None:
+            return {"status": "failed", "message": "Something went wrong!"}
+        message = data.get("message", "")
+        ic(message)
         all_entries = []
         for entry in data.get("data", []):
             entry_info = {
@@ -46,5 +74,5 @@ class EmailBreach:
         return {"status": message, "data": "Not found in any breach record"}
 
 if __name__ == '__main__':
-    result = EmailBreach().getBreachInfo("test@gmail.com")
+    result = EmailBreach().getBreachInfo("djspaul99@gmail.com")
     print(result)
