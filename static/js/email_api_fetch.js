@@ -1,7 +1,3 @@
-function removeAnchorTags(unsafe) {
-    return unsafe.replace(/<a[^>]*>[^<]*<\/a>/g, "");
-}
-
 function dataFormater(response) {
     if(response.status == "failed"){
         return "<div>" + response.message + "</div>";
@@ -16,7 +12,6 @@ function dataFormater(response) {
             data += `<div><strong>Name:</strong> <div class="resultData">${breach.Name}</div></div>`;
             data += `<div><strong>Domain Name:</strong> <div class="resultData">${breach.Domain}</div></div>`;
             data += `<div><strong>Breached On:</strong> <div class="resultData">${breach.BreachDate}</div></div>`;
-            data += `<div><strong>Description:</strong> <div class="resultData" id="desc">${removeAnchorTags(breach.Description)}</div></div>`;
             data += `<div><strong>Data Classes:</strong> <div class="resultData">${breach.DataClasses.join(", ")}</div></div>`;
             data += `</div>`; // close #details
             data += `</div>`; // close #detailsContainer
