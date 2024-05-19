@@ -51,4 +51,9 @@ python app.py
 
 ## Screenshots
 
-![App Screenshot](/static/img/home.png)
+![home](/static/img/home.png)
+![securemessage](/static/img/securemessage.png)
+![hashid](/static/img/hashid.png)
+![passwordleak](/static/img/passwordleak.png)
+![emailleak](/static/img/emailleak.png)
+![help](/static/img/help.png)
