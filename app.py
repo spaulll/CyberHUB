@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 import base64
 # Custom modules
-from email_breach import EmailBreach   # noqa: F401
+from email_breach import EmailBreach
 from pass_breach import PassBreach 
 from hash_identifier import HashIdentifier
 from encryption_decryption import RSAEncryption
@@ -10,8 +10,8 @@ from encryption_decryption import RSAEncryption
 import json
 
 
-import sys
-print(sys.version) # required by subhasish
+# import sys
+# print(sys.version)
 
 app = Flask(__name__)
 CORS(app)
