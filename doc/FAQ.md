@@ -1,4 +1,4 @@
-**FAQs**
+# FAQs
 
 1. **What is CyberHUB?**
    CyberHUB is a secure online platform designed to enhance your privacy and security online. It offers a range of features including message encryption for privacy, message decryption, email breach checker, password breach checker and identification of popular hash types.
@@ -30,10 +30,8 @@
 10. **How does CyberHUB identify popular hash types?**
    Our platform includes a feature to identify popular hash types. If you encounter a hash and want to determine its type, simply input the hash into our system, and it will identify the hash type for you, providing valuable information for security and analysis purposes.
 
-10. **Is CyberHUB easy to use?**
+11. **Is CyberHUB easy to use?**
    Yes, CyberHUB is designed with simplicity in mind. Our user-friendly interface ensures a seamless experience for all users. Whether you're encrypting messages, checking for breaches, or identifying hash types, our platform makes it easy and intuitive.
 
-11. **Does CyberHUB display advertisements?**
+12. **Does CyberHUB display advertisements?**
     No, we do not display advertisements on our platform. We prioritize user experience and privacy, which is why you won't encounter any ads while using CyberHUB. Our focus is solely on providing a secure and efficient service for our users.
-
-
