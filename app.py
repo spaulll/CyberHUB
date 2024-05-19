@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
+from gevent.pywsgi import WSGIServer
 import base64
 # Custom modules
 from email_breach import EmailBreach
@@ -151,4 +152,8 @@ def massageEncode(rValue):
 
 
 if __name__ == '__main__':
+    # Development
     app.run(debug=True)
+    # Production
+    # http_server = WSGIServer(('127.0.0.1', 5000), app)
+    # http_server.serve_forever()
