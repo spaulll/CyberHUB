@@ -1,9 +1,8 @@
 {% block body%}
 {% endblock %}
-<footer>
     <style>
         /* Footer styles */
-        footer {
+        .footer-content footer {
             position: fixed;
             left: 0;
             bottom: 0;
@@ -31,7 +30,7 @@
             width: 100%; /* Make copyright text full width */
         }
 
-        .menuitems {
+        .footer-content .footer_menuitems {
             color: #fff;
             text-decoration: none;
             font-size: 12px; /* Reduced font size */
@@ -41,31 +40,31 @@
             align-items: center;
         }
 
-        .menuitems:hover {
+        .footer-content .footer_menuitems:hover {
             color: #ffcc00;
         }
 
-        .menuitems i {
+        .footer-content .footer_menuitems i {
             margin-right: 5px;
         }
 
-        .social-icons {
+        .footer-content .social-icons {
             margin: 10px 0; /* Reduced margin */
         }
 
-        .social-icons a {
+        .footer-content .social-icons a {
             color: #fff;
             font-size: 16px; /* Reduced font size */
             margin: 0 8px; /* Reduced margin */
             transition: color 0.3s;
         }
 
-        .social-icons a:hover {
+        .footer-content .social-icons a:hover {
             color: #ffcc00;
         }
 
         @media (max-width: 768px) {
-            footer {
+            .footer-content footer {
                 padding: 5px;
             }
 
@@ -73,12 +72,12 @@
                 font-size: 10px;
             }
 
-            .menuitems {
+            .footer-content .footer_menuitems {
                 font-size: 10px;
                 margin: 0 5px;
             }
 
-            .social-icons a {
+            .footer-content .social-icons a {
                 font-size: 14px;
                 margin: 0 5px;
             }
@@ -87,11 +86,11 @@
     <div class="footer-content">
         <footer>
             <div class="footer-content">
-                <a href="{{ url_for('securemessage') }}" class="menuitems" id="securemessage"><i class="fas fa-lock"></i>Secure Message</a>
-                <a href="{{ url_for('hashid') }}" class="menuitems" id="hashid"><i class="fas fa-fingerprint"></i>Hash Identifier</a>
-                <a href="{{ url_for('passwordleak') }}" class="menuitems" id="passwordleak"><i class="fas fa-key"></i>DarkWeb Password Leak Check</a>
-                <a href="{{ url_for('emailleak') }}" class="menuitems" id="emailleak"><i class="fas fa-envelope"></i>DarkWeb Email Leak Check</a>
-                <a href="{{ url_for('help') }}" class="menuitems" id="help"><i class="fas fa-question-circle"></i>Help & FAQ</a>
+                <a href="{{ url_for('securemessage') }}" class="footer_menuitems" id="footer_securemessage"><i class="fas fa-lock"></i>Secure Message</a>
+                <a href="{{ url_for('hashid') }}" class="footer_menuitems" id="footer_hashid"><i class="fas fa-fingerprint"></i>Hash Identifier</a>
+                <a href="{{ url_for('passwordleak') }}" class="footer_menuitems" id="footer_passwordleak"><i class="fas fa-key"></i>DarkWeb Password Leak Check</a>
+                <a href="{{ url_for('emailleak') }}" class="footer_menuitems" id="footer_emailleak"><i class="fas fa-envelope"></i>DarkWeb Email Leak Check</a>
+                <a href="{{ url_for('help') }}" class="footer_menuitems" id="footer_help"><i class="fas fa-question-circle"></i>Help & FAQ</a>
             </div>
             <div class="social-icons">
                 <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -102,3 +101,4 @@
             <p>&copy; 2024 CyberHub. All rights reserved.</p>
         </footer>
         <script src="https://kit.fontawesome.com/788287f951.js" crossorigin="anonymous"></script>
+    <div>
