@@ -2,11 +2,17 @@
 {% endblock %}
     <style>
         /* Footer styles */
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center items */
+            align-items: center;
+        }
         .footer-content footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
+            position: relative;
+            bottom: -80px;
+            width: 100vw;
+            margin: 0 0;
             background-color: #222; /* Dark background color */
             color: #fff; /* White text color */
             padding: 10px 0; /* Reduced padding for a smaller footer */
@@ -14,16 +20,6 @@
             font-family: 'Arial', sans-serif; /* Font style */
             z-index: 9999; /* Ensure the footer stays on top of other content */
         }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center; /* Center items */
-            align-items: center;
-        }
-
         .footer-content p {
             margin: 0;
             font-size: 12px; /* Reduced font size */
@@ -85,7 +81,7 @@
     </style>
     <div class="footer-content">
         <footer>
-            <div class="footer-content">
+            <div class="footer_menuitems">
                 <a href="{{ url_for('securemessage') }}" class="footer_menuitems" id="footer_securemessage"><i class="fas fa-lock"></i>Secure Message</a>
                 <a href="{{ url_for('hashid') }}" class="footer_menuitems" id="footer_hashid"><i class="fas fa-fingerprint"></i>Hash Identifier</a>
                 <a href="{{ url_for('passwordleak') }}" class="footer_menuitems" id="footer_passwordleak"><i class="fas fa-key"></i>DarkWeb Password Leak Check</a>
