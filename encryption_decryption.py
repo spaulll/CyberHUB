@@ -8,7 +8,7 @@ class RSAEncryption:
         self.__p, self.__q = self.generate_distinct_primes()
         self.__n, self.__e, self.__d = self.generate_keys()
         self.__random_string = self.generate_random_string()
- 
+
     def generate_keys(self):
         n = self.__p * self.__q
         phi_n = (self.__p - 1) * (self.__q - 1)
@@ -215,11 +215,10 @@ if __name__ == '__main__':
             print("Random string:", random_string)
         elif user_choice == 'decrypt':
             random_string = input("Enter the random string: ")
- 
+
             # Decrypt message using RSA and Rail Fence Cipher
             decrypted_message = rsa.decrypt(random_string)
             if decrypted_message:
                 print(decrypted_message)
         else:
             print("Invalid choice. Please enter 'encrypt' or 'decrypt'.")
-

@@ -28,7 +28,7 @@
         background-color: var(--formBg);
         backdrop-filter: blur(var(--formBlurAmount));
         border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
     }
     .form input[type=email] {
         background-color: var(--formBg);
@@ -101,44 +101,57 @@
     align-items: center;
     flex-direction: column;
     max-width: 700px;
-    margin: 30px auto 0 auto;
+    margin: 60px auto 34px auto;
     padding: 20px;
     font-family: "Montserrat", sans-serif;
     background-color: var(--outputBg);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 14px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#detailsContainer {
+#jsonData hr {
+    width: 550px;
+    border: 1px solid #00000030;
+}
+
+.detailsContainer {
     display: flex;
     align-items: flex-start;
     width: 600px;
     padding: 10px;
 }
 
-#jsonData img {
+.detailsContainer img {
+    align-self: center;
+    filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);
     width: 100px;
     margin-right: 20px;
+    -webkit-filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);
 }
 
-#details {
+.details {
+    width: 250px;
     padding: 10px;
     flex-grow: 1;
 }
 
-#details div {
+.details div {
     display: flex;
     flex-direction: row;
     align-items: center; /* Aligns items vertically in each div */
-    margin-bottom: 5px;
+    margin-bottom: -20px;
 }
 
-#details div strong {
-    width: 150px;
+.details div strong {
+    width: 250px;
+    margin-right: 20px; /* Adjusted gap between label and data */
+}
+.details div p {
+    width: 300px;
     margin-right: 20px; /* Adjusted gap between label and data */
 }
 
@@ -148,8 +161,13 @@
     margin-right: 20px;
 }
 
+.resultData{
+    margin-left: -88px;
+}
+
+
 </style>
-<h1 class="heading">DarkWeb Email Leak <br> Check</h1>
+<h1 class="heading">Is your Email breached ?</h1>
 <p class="description">Make sure your email information isn't exposed in DarkWeb</p>
 <div class="container">
     <div class="form">

@@ -55,11 +55,19 @@ def emailBreachChecker():
         
         # Assuming emailBreach().getBreachInfo(email) is returning some data
         # Replace it with your actual logic
-        # Data = {"BreachDate": "2022-12-13",
-        #         "DataClasses": ["Email addresses", "Partial phone numbers"],
-        #         "Domain": "gemini.com",
-        #         "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
-        #         "Name": "Gemini"}
+        # Data = {
+        #             "message": "Success.",
+        #             "data": 
+        #             [
+        #                 {
+        #                     "BreachDate": "2022-12-13",
+        #                     "DataClasses": ["Email addresses", "Partial phone numbers"],
+        #                     "Domain": "gemini.com",
+        #                     "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Gemini.png",
+        #                     "Name": "Gemini"
+        #                 }
+        #             ]
+        #         }
         # Data=EmailBreach().getBreachInfo((email))
 
         with open('.\\json\\big_resp.json', 'r') as file:

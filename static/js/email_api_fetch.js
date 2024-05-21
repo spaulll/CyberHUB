@@ -10,14 +10,14 @@ function dataFormater(response) {
     else{
         let data = "";
         response.data.forEach(breach => {
-            data += `<div id="topOuter">`;
-            data += `<div id="detailsContainer">`;
-            data += `<img src="${breach.LogoPath}" alt="${breach.Name}">`;
-            data += `<div id="details">`;
-            data += `<div><strong>Name:</strong> <div class="resultData">${breach.Name}</div></div>`;
-            data += `<div><strong>Domain Name:</strong> <div class="resultData"><a href="https://${breach.Domain}">${breach.Domain}</a></div></div>`;
-            data += `<div><strong>Breached On:</strong> <div class="resultData">${breach.BreachDate}</div></div>`;
-            data += `<div><strong>Potential Leakage:</strong> <div class="resultData">${breach.DataClasses.join(", ")}</div></div>`;
+            data += `<div class="topOuter">`;
+            data += `<div class="detailsContainer">`;
+            data += `<img src="` + breach.LogoPath + `" alt="` + breach.Name + `" onerror="this.src='../static/assets/undifined.png';">`;
+            data += `<div class="details">`;
+            data += `<div class="name"><strong>Name:</strong> <p class="resultData">` + breach.Name + `</p></div>`;
+            data += `<div class="domain"><strong>Domain Name:</strong> <p class="resultData"><a href="https://` + breach.Domain + `">` + breach.Domain + `</a></p></div>`;
+            data += `<div class="date"><strong>Breached On:</strong> <p class="resultData">` + breach.BreachDate + `</p></div>`;
+            data += `<div class="leak"><strong>Potential Leakage:</strong> <p class="resultData">${breach.DataClasses.join(", ")}</p></div>`;
             data += `</div>`; // close #details
             data += `</div>`; // close #detailsContainer
             data += `</div>`;
