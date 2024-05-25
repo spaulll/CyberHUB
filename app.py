@@ -96,7 +96,7 @@ def passwordBreachChecker():
 ### As of now password is in plaintext, but is has to be only 5 letters of SHA1
 ### hashed plaintext password.
         
-        print(f"Received email from the form: {password}")
+        print(f"Received password from the form: {password}")
         #Data={"massage":"form backend you are successfully getting data view in line no 78"}
         Data = PassBreach().isPassBreached(password)        
         

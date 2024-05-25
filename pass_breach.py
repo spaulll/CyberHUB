@@ -12,7 +12,8 @@ class PassBreach:
             return []
 
     def isPassBreached(self, password):
-        sha1 = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
+        sha1 = password.upper()
+        # sha1 = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
         prefix, suffix = sha1[:5], sha1[5:]
 
         pwnedlist = [line.split(':') for line in self.getData(prefix)]
