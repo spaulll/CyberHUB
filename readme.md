@@ -43,6 +43,10 @@ python app.py
 
  Access the application in your web browser at [http://localhost:5000/](http://localhost:5000/).
 
+ More Info on [FAQ](/doc/FAQ.md)
+
+Coding Standards [Here](/doc/Coding_standard.md)
+
 ## API Endpoints
 
 - `/api/email-breach`: Checks if the provided email has been involved in any data breaches.

@@ -1,3 +1,5 @@
+# Coding Standard
+
 1. **Naming Conventions**:
    - Use meaningful names for variables, functions, classes, etc.
    - Use camelCase for variables and functions in JavaScript, Java, and Python.
@@ -42,6 +44,7 @@
    - Use descriptive commit messages.
 
 10. **Security**:
-   - Follow best practices for handling sensitive data.
-   - Avoid hardcoding passwords and other sensitive information.
-   - Implement proper data validation and sanitization.
+
+- Follow best practices for handling sensitive data.
+- Avoid hardcoding passwords and other sensitive information.
+- Implement proper data validation and sanitization.
