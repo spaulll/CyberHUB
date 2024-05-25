@@ -8,7 +8,7 @@ function dataFormater(response) {
     }
 
     else{
-        let data = "";
+        let data = `<strong id="caution">!! Please Change your credentials Immediately !!</strong>`;
         response.data.forEach(breach => {
             data += `<div class="topOuter">`;
             data += `<div class="detailsContainer">`;

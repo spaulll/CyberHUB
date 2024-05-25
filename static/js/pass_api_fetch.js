@@ -20,7 +20,7 @@ async function animateValue(obj, start, end, duration) {
 function dataFormater (jsonDataDisplay,response) {
     if(response.isbreached == "True")
     {
-        jsonDataDisplay.innerHTML = `<span> The Password has been breached </span> <strong class="data" id="num">0</strong>`;
+        jsonDataDisplay.innerHTML = `<span> The Password has been breached </span> <strong class="data" id="num">0</strong> times <br> <strong id="caution">!! Please Change Your Password Immediately !!</strong>`;
     }
     if(response.isbreached == "False")
     {
