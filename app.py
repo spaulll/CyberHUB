@@ -8,6 +8,8 @@ from pass_breach import PassBreach
 from hash_identifier import HashIdentifier
 from encryption_decryption import RSAEncryption
 
+from get_server_ip import get_server_ip
+
 import json
 
 
@@ -26,19 +28,23 @@ def index_home():
 
 @app.route('/emailleak')
 def emailleak():
-    return render_template('emailleak.html')
+    server_ip = get_server_ip()
+    return render_template('emailleak.html', server_ip=server_ip)
 
 @app.route('/passwordleak')
 def passwordleak():
-    return render_template('passwordleak.html')
+    server_ip = get_server_ip()
+    return render_template('passwordleak.html', server_ip=server_ip)
 
 @app.route('/hashid')
 def hashid():
-    return render_template('hashid.html')
+    server_ip = get_server_ip()
+    return render_template('hashid.html', server_ip=server_ip)
 
 @app.route('/securemessage')
 def securemessage():
-    return render_template('securemessage.html')
+    server_ip = get_server_ip()
+    return render_template('securemessage.html', server_ip=server_ip)
 
 @app.route('/help')
 def help():
@@ -161,7 +167,7 @@ def massageEncode(rValue):
 
 if __name__ == '__main__':
     # Development
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
     # Production
     # http_server = WSGIServer(('127.0.0.1', 5000), app)
     # http_server.serve_forever()

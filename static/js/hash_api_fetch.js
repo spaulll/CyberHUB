@@ -8,8 +8,10 @@ function dataFormater(responseData,Display) {
         Display.innerHTML = `<span> Can't identify this hash. </span>`;
     }
 }
-const apiUrl = "http://127.0.0.1:5000/api/hash-id";
 
+const apiUrl = `http://${serverIp}:5000/api/hash-id`;
+
+    
 const jsonDataDisplay = document.querySelector("#jsonDataDisplay");
 const submitBtn = document.querySelector(".submit-btn");
 

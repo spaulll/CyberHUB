@@ -7,8 +7,8 @@ const toggleText = document.querySelectorAll('.switch-x-toggletext');
 const messageInput = document.querySelector('#messageInput');
 const submitBtn = document.querySelector('.submit-btn');
 const submitDisplay = document.querySelector('#submit');
-const apiUrlen = "http://127.0.0.1:5000/api/massageEncode/encrypt";
-const apiUrlden = "http://127.0.0.1:5000/api/massageEncode/decrypt";
+const apiUrlen = `http://${serverIp}:5000/api/massageEncode/encrypt`;
+const apiUrlden = `http://${serverIp}:5000/api/massageEncode/decrypt`;
 let DataDisplay = document.getElementById("jsonDataDisplay");
 
 // Function to escape HTML special characters

@@ -28,7 +28,7 @@ function dataFormater (jsonDataDisplay,response) {
     }
 }
 
-const apiUrl = "http://127.0.0.1:5000/api/password-breach";
+const apiUrl = `http://${serverIp}:5000/api/password-breach`;
 
 const jsonDataDisplay = document.querySelector("#jsonDataDisplay");
 const submitBtn = document.querySelector(".submit-btn");

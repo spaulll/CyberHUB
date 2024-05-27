@@ -29,7 +29,7 @@ function dataFormater(response) {
 
 const emailInput = document.querySelector("#email").value;
 
-const apiUrl = "http://127.0.0.1:5000/api/email-breach";
+const apiUrl = `http://${serverIp}:5000/api/email-breach`;
 
 const jsonDataDisplay = document.querySelector("#jsonData");
 const submitBtn = document.querySelector(".submit-btn");
