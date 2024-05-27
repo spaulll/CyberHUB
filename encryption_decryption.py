@@ -70,6 +70,7 @@ class RSAEncryption:
         conn.close()
 
     def encrypt(self, message):
+        initDB()
         rail_fence_key = randint(2, 5)
         rail_fence_cipher = RailFenceCipher(rail_fence_key)
         rail_fence_encrypted = rail_fence_cipher.encrypt(message)
