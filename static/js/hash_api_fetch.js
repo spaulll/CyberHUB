@@ -16,7 +16,7 @@ const jsonDataDisplay = document.querySelector("#jsonDataDisplay");
 const submitBtn = document.querySelector(".submit-btn");
 
 const fetchData = async (event) => {
-    event.preventDefault(); // Prevents default form submission behavior
+    event.preventDefault(); 
     try {
         const hashInput = await document.querySelector("#hash").value;
         if(hashInput !== "")
@@ -29,14 +29,8 @@ const fetchData = async (event) => {
                     },
                     body: JSON.stringify(data)
                 });
-                console.log(response.status);
                 let responseData = await response.json();
-                console.log(responseData);
-                // Update DOM with response data
                 dataFormater(responseData,jsonDataDisplay);
-                // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
-                //submitBtn.disabled = true; // Disable the submit button
-                // document.querySelector("#password").disabled = true;
             }
     } catch (error) {
         console.error('Error:', error);

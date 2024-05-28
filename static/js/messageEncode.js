@@ -11,7 +11,6 @@ const apiUrlen = `http://${serverIp}:5000/api/massageEncode/encrypt`;
 const apiUrlden = `http://${serverIp}:5000/api/massageEncode/decrypt`;
 let DataDisplay = document.getElementById("jsonDataDisplay");
 
-// Function to escape HTML special characters
 function escapeHTML(str) {
   return str.replace(/[&<>'"]/g, (tag) => ({
     '&': '&amp;',
@@ -27,7 +26,6 @@ const fetchDataEN = async (event) => {
   try {
     let message = messageInput.value;
     let cipherText = btoa(unescape(encodeURIComponent(message)));
-    console.log(cipherText);
     const data = { "encodedMassage": cipherText };
     let response = await fetch(apiUrlen, {
       method: 'POST',
@@ -36,9 +34,7 @@ const fetchDataEN = async (event) => {
       },
       body: JSON.stringify(data)
     });
-    console.log(response.status);
     let responseData = await response.json();
-    console.log(responseData);
     const messagep = escapeHTML(String(responseData.message));
     DataDisplay.innerHTML = `<span> Your encrypted message is: </span> <strong id="data">` + messagep + "</strong>"+` <svg id="copyButton" class="copy-btn" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 16V4C3 2.89543 3.89543 2 5 2H15M9 22H18C19.1046 22 20 21.1046 20 20V8C20 6.89543 19.1046 6 18 6H9C7.89543 6 7 6.89543 7 8V20C7 21.1046 7.89543 22 9 22Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="copiedtext" id="copied">Copied!</span>`;
     document.getElementById('copyButton').addEventListener('click', function() {
@@ -62,7 +58,6 @@ const fetchDataDN = async (event) => {
   try {
     let message = messageInput.value;
     let cipherText = btoa(message);
-    console.log(cipherText);
     const data = { "encodedMassage": cipherText };
     let response = await fetch(apiUrlden, {
       method: 'POST',
@@ -71,9 +66,7 @@ const fetchDataDN = async (event) => {
       },
       body: JSON.stringify(data)
     });
-    console.log(response.status);
     let responseData = await response.json();
-    console.log(responseData);
     const DataDisplay = document.getElementById('jsonDataDisplay'); // Fix reference to DataDisplay
 
     if (responseData.status !== "failed") {

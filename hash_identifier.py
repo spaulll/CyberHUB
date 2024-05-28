@@ -2,7 +2,6 @@ from re import match, IGNORECASE
 
 class HashIdentifier:
     def getData(self, hash):
-        # Dictionary of hash regex patterns for various hash types
         hash_patterns = {
             'MD2': r'^[a-f0-9]{32}$',
             'MD4': r'^[a-f0-9]{32}$',
@@ -36,17 +35,15 @@ class HashIdentifier:
             'ELF32': r'^[a-f0-9]{8}$',
             'XOR32': r'^[a-f0-9]{8}$',
             'Dahua': r'^[a-f0-9]{8}$',
-            # Add more patterns for other hash types as needed
         }
         algorithms = []
-        # Iterate over patterns and check if the hash matches
         for algorithm, pattern in hash_patterns.items():
             if match(pattern, hash, IGNORECASE):
                 algorithms.append(algorithm)
 
         if algorithms:
-            return {"status": "success", "types": algorithms}      #found
-        return {"status": "failed", "types": "None"}         #not found
+            return {"status": "success", "types": algorithms}
+        return {"status": "failed", "types": "None"}
 
 if __name__ == '__main__':
 

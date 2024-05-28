@@ -18,8 +18,8 @@ function dataFormater(response) {
             data += `<div class="domain"><strong>Domain Name:</strong> <p class="resultData"><a href="https://` + breach.Domain + `">` + breach.Domain + `</a></p></div>`;
             data += `<div class="date"><strong>Breached On:</strong> <p class="resultData">` + breach.BreachDate + `</p></div>`;
             data += `<div class="leak"><strong>Potential Leakage:</strong> <p class="resultData">${breach.DataClasses.join(", ")}</p></div>`;
-            data += `</div>`; // close #details
-            data += `</div>`; // close #detailsContainer
+            data += `</div>`; 
+            data += `</div>`;
             data += `</div>`;
             data +="<hr>";
             });
@@ -35,7 +35,7 @@ const jsonDataDisplay = document.querySelector("#jsonData");
 const submitBtn = document.querySelector(".submit-btn");
 
 const fetchData = async (event) => {
-    event.preventDefault(); // Prevents default form submission behavior
+    event.preventDefault();
     try {
         jsonDataDisplay.innerHTML = "<div>Please wait...</div>";
         const emailInput = await document.querySelector("#email").value;
@@ -48,15 +48,8 @@ const fetchData = async (event) => {
                 },
                 body: JSON.stringify(data)
             });
-            console.log(response.status);
             let responseData = await response.json();
-            console.log(responseData);
-            // Update DOM with response data
-        
             jsonDataDisplay.innerHTML = dataFormater(responseData);
-            // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
-            // submitBtn.disabled = true; // Disable the submit button
-            // document.querySelector("#email").disabled = true;
         }
     } catch (error) {
         console.error('Error:', error);

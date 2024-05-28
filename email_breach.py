@@ -12,7 +12,7 @@ class EmailBreach:
     def load_api_keys(self):
         load_dotenv('.env')
         keys = os.getenv("API_KEYS").split(',')
-        keys = [key.strip() for key in keys]  # Strip leading and trailing whitespace
+        keys = [key.strip() for key in keys]
         return keys
 
     def get_next_key(self):
@@ -23,7 +23,7 @@ class EmailBreach:
         return self.keys[self.current_key_index]
 
     def isBreached(self, email):
-        for _ in range(len(self.keys)):  # Try each API key
+        for _ in range(len(self.keys)):
             self.headers = {
                 "X-RapidAPI-Key": self.keys[self.current_key_index],
                 "X-RapidAPI-Host": "data-breach-checker.p.rapidapi.com"
@@ -37,11 +37,10 @@ class EmailBreach:
                 response_json = response.json()
                 ic(response_json)
                 if "message" in response_json and "You have exceeded" in response_json["message"]:
-                    # Move to the next API key
                     self.current_key_index = (self.current_key_index + 1) % len(self.keys)
                     continue
                 else:
-                    return response_json  # Return the response if rate limit not exceeded
+                    return response_json
                 ic(response_json)
             except requests.RequestException as e:
                 ic("Request Error:", e)

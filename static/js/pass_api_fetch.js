@@ -34,9 +34,8 @@ const jsonDataDisplay = document.querySelector("#jsonDataDisplay");
 const submitBtn = document.querySelector(".submit-btn");
 
 const fetchData = async (event) => {
-    event.preventDefault(); // Prevents default form submission behavior
+    event.preventDefault();
     try {
-        // const passInput = await document.querySelector("#password").value;
         const passInput = sha1(await document.querySelector("#password").value);
         if(passInput !== "")
             {
@@ -50,17 +49,11 @@ const fetchData = async (event) => {
                 });
                 console.log(response.status);
                 let responseData = await response.json();
-                // console.log(responseData);
-                // console.log(typeof(responseData.times));
-                // Update DOM with response data
                 dataFormater(jsonDataDisplay,responseData);
                 if(responseData.isbreached == "True"){
                     const obj = document.getElementById("num");
                     animateValue(obj, 0, responseData.times, 3000);
                 }
-                // jsonDataDisplay.innerHTML = JSON.stringify(responseData);
-                //submitBtn.disabled = true; // Disable the submit button
-                // document.querySelector("#password").disabled = true;
             }
     } catch (error) {
         console.error('Error:', error);

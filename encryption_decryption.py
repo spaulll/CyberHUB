@@ -54,7 +54,6 @@ class RSAEncryption:
     def generate_random_string(self):
         return ''.join(choice(ascii_letters + digits + "@#$&") for _ in range(randint(30, 40)))
 
-    # Method to access random string
     def get_random_string(self):
         return self.__random_string
 
@@ -112,7 +111,6 @@ class RailFenceCipher:
         num_rows = self.key
         matrix = [['' for _ in range(num_columns)] for _ in range(num_rows)]
         
-        # Generate the rail fence matrix
         direction, row = 1, 0
         for j in range(num_columns):
             matrix[row][j] = plaintext[j]
@@ -121,7 +119,6 @@ class RailFenceCipher:
             if row == 0 or row == self.key - 1:
                 direction *= -1
         
-        # Generate the ciphertext
         cipher = ''
         for i in range(self.key):
             for j in range(num_columns):
@@ -134,7 +131,6 @@ class RailFenceCipher:
         num_rows = self.key
         matrix = [['' for _ in range(num_columns)] for _ in range(num_rows)]
         
-        # Reconstruct the rail fence matrix
         direction, row = 1, 0
         for j in range(num_columns):
             matrix[row][j] = '*'
@@ -143,7 +139,6 @@ class RailFenceCipher:
             if row == 0 or row == self.key - 1:
                 direction *= -1
         
-        # Fill the matrix with ciphertext characters
         index = 0
         for i in range(self.key):
             for j in range(num_columns):
@@ -151,7 +146,6 @@ class RailFenceCipher:
                     matrix[i][j] = ciphertext[index]
                     index += 1
         
-        # Reconstruct plaintext from the matrix
         plaintext = ''
         direction, row = 1, 0
         for j in range(num_columns):
@@ -163,13 +157,10 @@ class RailFenceCipher:
         return plaintext
 
 def initDB():
-    # Establish a connection to the SQLite database file
     conn = connect("database.db")
 
-    # Create a cursor object to execute SQL commands
     cursor = conn.cursor()
 
-    # Create the CipherData table if it doesn't exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS CipherData (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -183,19 +174,15 @@ def initDB():
         )
     ''')
 
-    # Commit changes to the database
     conn.commit()
 
-    # Close the cursor and connection
     cursor.close()
     conn.close()
 
 if __name__ == '__main__':
 
-    # Initialize the DB
     initDB()
     
-    # Instantiate the RSAEncryption class
     rsa = RSAEncryption()
 
     while True:
@@ -203,13 +190,10 @@ if __name__ == '__main__':
         if user_choice == 'encrypt':
             message = input("Enter the message: ")
 
-            # Generate new keys and random string for each encryption
             rsa = RSAEncryption()
 
-            # Encrypt message using RSA and Rail Fence Cipher
             cipher = rsa.encrypt(message)
 
-            # Get the random string from RSAEncryption class
             random_string = rsa.get_random_string()
 
             print(cipher)
@@ -217,7 +201,6 @@ if __name__ == '__main__':
         elif user_choice == 'decrypt':
             random_string = input("Enter the random string: ")
 
-            # Decrypt message using RSA and Rail Fence Cipher
             decrypted_message = rsa.decrypt(random_string)
             if decrypted_message:
                 print(decrypted_message)
