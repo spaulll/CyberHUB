@@ -1,6 +1,7 @@
-function dataFormater(response) {
+function dataFormater(response, emailInput) {
     if(response.status == "failed"){
         return "<div>" + response.message + "</div>";
+
     }
 
     else if(response.is_breached == false){
@@ -9,6 +10,7 @@ function dataFormater(response) {
 
     else{
         let data = `<strong id="caution">!! Please Change your credentials Immediately !!</strong>`;
+        data += `<div> Total number of breaches found: ${response.data.length}</div>`;
         response.data.forEach(breach => {
             data += `<div class="topOuter">`;
             data += `<div class="detailsContainer">`;
@@ -27,40 +29,45 @@ function dataFormater(response) {
     }
 }
 
-const emailInput = document.querySelector("#email").value;
 
-const apiUrl = `http://${serverIp}:5000/api/email-breach`;
-
+const emailInputField = document.querySelector("#email");
 const jsonDataDisplay = document.querySelector("#jsonData");
 const submitBtn = document.querySelector(".submit-btn");
 
+const apiUrl = `http://${serverIp}:5000/api/email-breach`;
+
 const fetchData = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevents default form submission behavior
     try {
         jsonDataDisplay.innerHTML = "<div>Please wait...</div>";
-        const emailInput = await document.querySelector("#email").value;
-        if (emailInput !== "" && emailInput.search("@") !== -1) {
+        const emailInput = emailInputField.value.trim();
+        if (emailInput && emailInput.includes("@")) {
             const data = { "email": emailInput };
-            let response = await fetch(apiUrl, {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             });
-            let responseData = await response.json();
-            jsonDataDisplay.innerHTML = dataFormater(responseData);
+            const responseData = await response.json();
+            jsonDataDisplay.innerHTML = dataFormater(responseData, emailInput);
+        } else {
+            jsonDataDisplay.innerHTML = "<div>Please enter a valid email address.</div>";
         }
     } catch (error) {
         console.error('Error:', error);
+        jsonDataDisplay.innerHTML = "<div>There was an error processing your request. Please try again later.</div>";
     }
 };
 
-const enter = async (event) => {
+const handleEnterKey = (event) => {
     if (event.key === "Enter") {
-        submitBtn.click();
+        fetchData(event);
     }
 };
 
-document.addEventListener("DOMContentLoaded", enter);
-submitBtn.addEventListener("click", fetchData);
+document.addEventListener("DOMContentLoaded", () => {
+    emailInputField.addEventListener("keydown", handleEnterKey);
+    submitBtn.addEventListener("click", fetchData);
+});
