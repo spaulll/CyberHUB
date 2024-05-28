@@ -41,35 +41,38 @@ class EmailBreach:
                     continue
                 else:
                     return response_json
-                ic(response_json)
             except requests.RequestException as e:
                 ic("Request Error:", e)
-                return None
-
-
+                return {}
 
     def getBreachInfo(self, email):
         data = self.isBreached(str(email))
         ic(data)
         
-        if data is None:
+        if data["data"] is None:
             return {"status": "failed", "message": "Something went wrong!"}
+        
         message = data.get("message", "")
         ic(message)
+        
         all_entries = []
-        for entry in data.get("data", []):
-            entry_info = {
-                "BreachDate": entry.get("BreachDate", ""),
-                "Name": entry.get("Name", ""),
-                "Domain": entry.get("Domain", ""),
-                "Description": entry.get("Description", ""),
-                "LogoPath": entry.get("LogoPath", ""),
-                "DataClasses": entry.get("DataClasses", [])
-            }
-            all_entries.append(entry_info)
-
+        try:    
+            for entry in data.get("data", []):
+                entry_info = {
+                    "BreachDate": entry.get("BreachDate", ""),
+                    "Name": entry.get("Name", ""),
+                    "Domain": entry.get("Domain", ""),
+                    "LogoPath": entry.get("LogoPath", ""),
+                    "DataClasses": entry.get("DataClasses", [])
+                }
+                all_entries.append(entry_info)
+        except Exception as e:
+            ic("Error processing entries:", e)
+            return {"status": "failed", "message": "Something went wrong!"}
+        
         if all_entries:
             return {"status": message, "data": all_entries, "is_breached": True, "message": "found in breach record"}
+        
         return {"status": message, "data": "Not found in any breach record", "is_breached": False, "message": "not found in breach record"}
 
 if __name__ == '__main__':
