@@ -36,9 +36,10 @@ const submitBtn = document.querySelector(".submit-btn");
 const fetchData = async (event) => {
     event.preventDefault();
     try {
-        const passInput = sha1(await document.querySelector("#password").value);
+        const passInput = await document.querySelector("#password").value;
         if(passInput !== "")
             {
+                passInput = sha1(passInput)
                 const data = { "password": passInput };
                 let response = await fetch(apiUrl, {
                     method: 'POST',
@@ -54,9 +55,11 @@ const fetchData = async (event) => {
                     const obj = document.getElementById("num");
                     animateValue(obj, 0, responseData.times, 3000);
                 }
+            } else {
+                jsonDataDisplay.innerHTML = `<div> Please enter a password to check. </div>`;
             }
     } catch (error) {
-        console.error('Error:', error);
+        jsonDataDisplay.innerHTML = `<div>There was an error processing your request. Please try again later.</div>`;
     }
 };
 

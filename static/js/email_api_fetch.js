@@ -56,7 +56,6 @@ const fetchData = async (event) => {
             jsonDataDisplay.innerHTML = "<div>Please enter a valid email address.</div>";
         }
     } catch (error) {
-        console.error('Error:', error);
         jsonDataDisplay.innerHTML = "<div>There was an error processing your request. Please try again later.</div>";
     }
 };

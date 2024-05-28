@@ -31,10 +31,13 @@ const fetchData = async (event) => {
                 });
                 let responseData = await response.json();
                 dataFormater(responseData,jsonDataDisplay);
+            } else {
+                jsonDataDisplay.innerHTML = `<div> Please enter a hash. </div>`;
             }
     } catch (error) {
-        console.error('Error:', error);
+        jsonDataDisplay.innerHTML = `<div>There was an error processing your request. Please try again later.</div>`;
     }
+
 };
 
 const enter = async (event) => {
