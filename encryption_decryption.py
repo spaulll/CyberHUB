@@ -195,9 +195,7 @@ if __name__ == '__main__':
             cipher = rsa.encrypt(message)
 
             random_string = rsa.get_random_string()
-
-            print(cipher)
-            print("Random string:", random_string)
+            
         elif user_choice == 'decrypt':
             random_string = input("Enter the random string: ")
 

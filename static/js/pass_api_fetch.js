@@ -48,7 +48,6 @@ const fetchData = async (event) => {
                     },
                     body: JSON.stringify(data)
                 });
-                console.log(response.status);
                 let responseData = await response.json();
                 dataFormater(jsonDataDisplay,responseData);
                 if(responseData.isbreached == "True"){

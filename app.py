@@ -77,7 +77,6 @@ def hashIdentifier():
         data = request.json
         hash = data.get('hash')      
         Data = HashIdentifier().getData(hash)
-        app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
         jsonData=jsonify(Data).json
         return jsonData,200
     return jsonify({"error": "Method not allowed"}), 405
