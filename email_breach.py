@@ -49,9 +49,9 @@ class EmailBreach:
         data = self.isBreached(str(email))
         ic(data)
         
-        if data["data"] is None:
+        if not data or "data" not in data:
             return {"status": "failed", "message": "Something went wrong!"}
-        
+
         message = data.get("message", "")
         ic(message)
         
