@@ -49,7 +49,7 @@ def emailBreachChecker():
         data = request.json
         email = data.get('email')
         Data=EmailBreach().getBreachInfo((email))
-        app.logger.info(f"Data type: {type(Data)}, Data: {Data}")        
+
         if(Data.get("status", "") == "failed"):
             return jsonify(Data), 500
         elif(Data.get("is_breached", False)):
@@ -65,7 +65,7 @@ def passwordBreachChecker():
         data = request.json
         password = data.get('password')        
         Data = PassBreach().isPassBreached(password)        
-        app.logger.info(f"Data type: {type(Data)}, Data: {Data}")
+
         jsonData=jsonify(Data).json
         return jsonData,200
     return jsonify({"error": "Method not allowed"}), 405
@@ -100,4 +100,8 @@ def massageEncode(rValue):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # development
+    # app.run(host='0.0.0.0', port=5000, debug=True)
+    # production
+    http_server = WSGIServer(('0.0.0.0', 5000), app)
+    http_server.serve_forever()
