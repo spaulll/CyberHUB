@@ -36,7 +36,7 @@ const submitBtn = document.querySelector(".submit-btn");
 const fetchData = async (event) => {
     event.preventDefault();
     try {
-        const passInput = await document.querySelector("#password").value;
+        let passInput = await document.querySelector("#password").value;
         if(passInput !== "")
             {
                 passInput = sha1(passInput)
