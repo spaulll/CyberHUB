@@ -23,13 +23,13 @@ checking, password breach analysis, and message encryption/decryption.
 
 Clone the repository:
 
-```text
+```bash
 git clone https://github.com/spaulll/college_project.git
 ```
 
 Install dependencies:
 
-```text
+```bash
 pip install -r requirements.txt
 ```
 
@@ -43,10 +43,19 @@ python app.py
 
  Access the application in your web browser at [http://localhost:5000/](http://localhost:5000/).
 
- More Info on [FAQ](/doc/FAQ.md)
+## Docker Guide
 
-Coding Standards [Here](/doc/Coding_standard.md)
+Build the Docker image:
 
+```bash
+docker build -t cyberhub .
+```
+
+Run the Docker container:
+
+```bash
+docker run -e HOST_IP=host.docker.internal -p 5000:5000 cyberhub
+```
 ## API Endpoints
 
 - `/api/email-breach`: Checks if the provided email has been involved in any data breaches.
