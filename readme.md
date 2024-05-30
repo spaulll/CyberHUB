@@ -56,6 +56,19 @@ Run the Docker container:
 ```bash
 docker run -e HOST_IP=host.docker.internal -p 5000:5000 cyberhub
 ```
+
+## API Keys Configuration
+To use the email breach checker, you need to obtain an API key from [Have I Been Pwned](https://haveibeenpwned.com/API/Key) and set it up in a .env file.
+
+- Create a .env file in the root directory of your project and add your API key:
+```
+API_KEYs = your_hibp_api_key_here
+```
+- For multiple API Keys separate using commas
+```
+API_KEYs = api_key1, api_key2, api_key3
+```
+
 ## API Endpoints
 
 - `/api/email-breach`: Checks if the provided email has been involved in any data breaches.
