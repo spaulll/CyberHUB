@@ -17,11 +17,11 @@ CORS(app)
 environment = os.getenv('ENVIRONMENT', 'development')
 
 if environment == 'production':
-    server_url = 'cyber-hub.duckdns.org'
-    # server_url = get_public_ip() + ':5000'  # Use public IP for VPS deployment
+    server_url = 'https://cyber-hub.duckdns.org'
+    # server_url = 'http://' + get_public_ip() + ':5000'  # Use public IP for VPS deployment
 else:
-    server_url = 'localhost:5000'
-    # server_url = get_server_ip() + ':5000'  # Use local IP for local development
+    server_url = 'http://localhost:5000'
+    # server_url = 'http://' + get_server_ip() + ':5000'  # Use local IP for local development
 
 
 @app.route('/')

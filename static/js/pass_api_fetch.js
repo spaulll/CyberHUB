@@ -28,7 +28,7 @@ function dataFormater (jsonDataDisplay,response) {
     }
 }
 
-const apiUrl = `http://${server_url}/api/password-breach`;
+const apiUrl = `${server_url}/api/password-breach`;
 
 const jsonDataDisplay = document.querySelector("#jsonDataDisplay");
 const submitBtn = document.querySelector(".submit-btn");

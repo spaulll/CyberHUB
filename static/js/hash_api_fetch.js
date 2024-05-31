@@ -9,7 +9,7 @@ function dataFormater(responseData,Display) {
     }
 }
 
-const apiUrl = `http://${server_url}/api/hash-id`;
+const apiUrl = `${server_url}/api/hash-id`;
 
     
 const jsonDataDisplay = document.querySelector("#jsonDataDisplay");

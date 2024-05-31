@@ -7,8 +7,8 @@ const toggleText = document.querySelectorAll('.switch-x-toggletext');
 const messageInput = document.querySelector('#messageInput');
 const submitBtn = document.querySelector('.submit-btn');
 const submitDisplay = document.querySelector('#submit');
-const apiUrlen = `http://${server_url}/api/massageEncode/encrypt`;
-const apiUrlden = `http://${server_url}/api/massageEncode/decrypt`;
+const apiUrlen = `${server_url}/api/massageEncode/encrypt`;
+const apiUrlden = `${server_url}/api/massageEncode/decrypt`;
 let DataDisplay = document.getElementById("jsonDataDisplay");
 
 function escapeHTML(str) {
