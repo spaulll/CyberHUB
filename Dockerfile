@@ -16,6 +16,9 @@ COPY .env .env
 # Set environment variables from .env file
 ENV $(cat .env | xargs)
 
+# Set default environment variable for switching between production and development
+ENV ENVIRONMENT=development
+
 # Expose the port the app runs on
 EXPOSE 5000
 
