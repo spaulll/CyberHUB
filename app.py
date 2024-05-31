@@ -2,15 +2,28 @@ from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from gevent.pywsgi import WSGIServer
 import base64
+import os
 from email_breach import EmailBreach
 from pass_breach import PassBreach 
 from hash_identifier import HashIdentifier
 from encryption_decryption import RSAEncryption
-from get_server_ip import get_server_ip
-import json
+# from get_server_ip import get_server_ip       # Uncomment this import
+# from get_public_ip import get_public_ip       # Uncomment this import
 
 app = Flask(__name__)
 CORS(app)
+
+# Use environment variable to set server URL and IP retrieval function
+environment = os.getenv('ENVIRONMENT', 'development')
+
+if environment == 'production':
+    server_url = 'cyber-hub.duckdns.org'
+    # server_url = get_public_ip() + ':5000'  # Use public IP for VPS deployment
+else:
+    server_url = 'localhost:5000'
+    # server_url = get_server_ip() + ':5000'  # Use local IP for local development
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -21,23 +34,19 @@ def index_home():
 
 @app.route('/emailleak')
 def emailleak():
-    server_ip = get_server_ip()
-    return render_template('emailleak.html', server_ip=server_ip)
+    return render_template('emailleak.html', server_url=server_url)
 
 @app.route('/passwordleak')
 def passwordleak():
-    server_ip = get_server_ip()
-    return render_template('passwordleak.html', server_ip=server_ip)
+    return render_template('passwordleak.html', server_url=server_url)
 
 @app.route('/hashid')
 def hashid():
-    server_ip = get_server_ip()
-    return render_template('hashid.html', server_ip=server_ip)
+    return render_template('hashid.html', server_url=server_url)
 
 @app.route('/securemessage')
 def securemessage():
-    server_ip = get_server_ip()
-    return render_template('securemessage.html', server_ip=server_ip)
+    return render_template('securemessage.html', server_url=server_url)
 
 @app.route('/help')
 def help():
@@ -48,37 +57,31 @@ def emailBreachChecker():
     if request.method == 'POST':
         data = request.json
         email = data.get('email')
-        Data=EmailBreach().getBreachInfo((email))
-
-        if(Data.get("status", "") == "failed"):
+        Data = EmailBreach().getBreachInfo(email)
+        if Data.get("status", "") == "failed":
             return jsonify(Data), 500
-        elif(Data.get("is_breached", False)):
+        elif Data.get("is_breached", False):
             return jsonify(Data), 200
         else:
             return jsonify(Data), 404
     return jsonify({"error": "Method not allowed"}), 405
 
-
 @app.route("/api/password-breach", methods=['GET', 'POST'])
 def passwordBreachChecker():
     if request.method == 'POST':
         data = request.json
-        password = data.get('password')        
-        Data = PassBreach().isPassBreached(password)        
-
-        jsonData=jsonify(Data).json
-        return jsonData,200
+        password = data.get('password')
+        Data = PassBreach().isPassBreached(password)
+        return jsonify(Data), 200
     return jsonify({"error": "Method not allowed"}), 405
-
 
 @app.route("/api/hash-id", methods=['GET', 'POST'])
 def hashIdentifier():
     if request.method == 'POST':
         data = request.json
-        hash = data.get('hash')      
+        hash = data.get('hash')
         Data = HashIdentifier().getData(hash)
-        jsonData=jsonify(Data).json
-        return jsonData,200
+        return jsonify(Data), 200
     return jsonify({"error": "Method not allowed"}), 405
 
 @app.route("/api/massageEncode/<rValue>", methods=['POST'])
@@ -97,11 +100,9 @@ def massageEncode(rValue):
             return jsonify({'error': 'Access Forbidden'}), 404
     return jsonify({"error": "Something went wrong"}), 405
 
-
-
 if __name__ == '__main__':
-    # development
-    # app.run(host='0.0.0.0', port=5000, debug=True)
-    # production
-    http_server = WSGIServer(('0.0.0.0', 5000), app)
-    http_server.serve_forever()
+    if environment == 'production':
+        http_server = WSGIServer(('0.0.0.0', 5000), app)
+        http_server.serve_forever()
+    else:
+        app.run(host='0.0.0.0', port=5000, debug=True)

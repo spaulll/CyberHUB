@@ -34,7 +34,7 @@ const emailInputField = document.querySelector("#email");
 const jsonDataDisplay = document.querySelector("#jsonData");
 const submitBtn = document.querySelector(".submit-btn");
 
-const apiUrl = `http://${serverIp}:5000/api/email-breach`;
+const apiUrl = `http://${server_url}/api/email-breach`;
 
 const fetchData = async (event) => {
     event.preventDefault(); // Prevents default form submission behavior
