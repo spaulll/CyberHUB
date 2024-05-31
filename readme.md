@@ -2,8 +2,8 @@
 
 ![App Logo](/static/assets/icon_full.png)
 
-An Innovative Web App for Real-Time Data Protection and Breach Prevention
-
+###### An Innovative Web App for Real-Time Data Protection and Breach Prevention
+---
 ## Objective and Scope
 
 ### Objectives
@@ -19,6 +19,8 @@ An Innovative Web App for Real-Time Data Protection and Breach Prevention
 checking, password breach analysis, and message encryption/decryption.
 2. Emphasis on backend processing to ensure data integrity and security.
 
+---
+
 ## Installation
 
 Clone the repository:
@@ -32,8 +34,50 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+---
 
 ## Usage
+
+### Windows
+
+#### Using Command Prompt
+
+1. **Development Environment**:
+   ```cmd
+   set ENVIRONMENT=development
+   ```
+
+2. **Production Environment**:
+   ```cmd
+   set ENVIRONMENT=production
+   ```
+
+#### Using PowerShell
+
+1. **Development Environment**:
+   ```powershell
+   $env:ENVIRONMENT="development"
+   ```
+
+2. **Production Environment**:
+   ```powershell
+   $env:ENVIRONMENT="production"
+   ```
+
+### Unix/Linux/macOS
+
+#### Using Terminal
+
+1. **Development Environment**:
+   ```bash
+   export ENVIRONMENT=development
+   ```
+
+2. **Production Environment**:
+   ```bash
+   export ENVIRONMENT=production
+   ```
+
 
 Run the Flask application:
 
@@ -42,6 +86,8 @@ python app.py
 ```
 
  Access the application in your web browser at [http://localhost:5000/](http://localhost:5000/).
+
+ ---
 
 ## Docker Guide
 
@@ -57,6 +103,13 @@ Run the Docker container:
 docker run -e HOST_IP=host.docker.internal -p 5000:5000 cyberhub
 ```
 
+For production
+```bash
+docker run -e HOST_IP=host.docker.internal -e ENVIRONMENT=production -p 5000:5000 cyberhub
+```
+
+---
+
 ## API Keys Configuration
 To use the email breach checker, you need to obtain an API key from [Have I Been Pwned](https://haveibeenpwned.com/API/Key) and set it up in a .env file.
 
@@ -69,6 +122,8 @@ API_KEYs = your_hibp_api_key_here
 API_KEYs = api_key1, api_key2, api_key3
 ```
 
+---
+
 ## API Endpoints
 
 - `/api/email-breach`: Checks if the provided email has been involved in any data breaches.
@@ -76,6 +131,7 @@ API_KEYs = api_key1, api_key2, api_key3
 - `/api/hash-id`: Identifies the type of hash provided.
 - `/api/massageEncode`: Encodes the provided message securely.
 
+---
 ## Screenshots
 
 ![home](/static/img/home.png)
