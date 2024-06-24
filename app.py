@@ -7,8 +7,8 @@ from email_breach import EmailBreach
 from pass_breach import PassBreach 
 from hash_identifier import HashIdentifier
 from encryption_decryption import RSAEncryption
-# from get_server_ip import get_server_ip       # Uncomment this import
-# from get_public_ip import get_public_ip       # Uncomment this import
+from get_server_ip import get_server_ip       
+from get_public_ip import get_public_ip       
 
 app = Flask(__name__)
 CORS(app)
@@ -17,11 +17,11 @@ CORS(app)
 environment = os.getenv('ENVIRONMENT', 'development')
 
 if environment == 'production':
-    server_url = 'https://cyber-hub.duckdns.org'
-    # server_url = 'http://' + get_public_ip() + ':5000'  # Use public IP for VPS deployment
+    # server_url = 'https://example.com'  # public domain name for CyberHUB goes here.
+    server_url = 'http://' + get_public_ip() + ':5000'  # Use public IP for VPS deployment
 else:
-    server_url = 'http://localhost:5000'
-    # server_url = 'http://' + get_server_ip() + ':5000'  # Use local IP for local development
+    # server_url = 'http://localhost:5000'
+    server_url = 'http://' + get_server_ip() + ':5000'  # Use local IP for local development
 
 
 @app.route('/')
